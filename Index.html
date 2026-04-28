@@ -1,10 +1,11 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Touch Stay — Free Tier Price Plan Redesign</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
 <style>
 :root {
   --bg: #0f1117;
@@ -35,7 +36,7 @@
   --r-sm: 5px;
 }
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 13px; line-height: 1.55; }
+body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; }
 .mono { font-family: 'JetBrains Mono', monospace; }
 .page { max-width: 1200px; margin: 0 auto; padding: 28px 24px 80px; }
 
@@ -80,7 +81,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 .t-premium .tier-price { color: var(--purple); }
 .t-contact .tier-price { color: var(--blue); }
 .tier-price-sub { font-size: 11px; color: var(--text3); margin-bottom: 12px; }
-.tier-bullets { display: flex; flex-direction: column; gap: 5px; font-size: 11px; color: var(--text2); }
+.tier-bullets { display: flex; flex-direction: column; gap: 6px; font-size: 12px; color: var(--text2); }
 .tier-bullets span { display: flex; gap: 7px; align-items: flex-start; line-height: 1.4; }
 .tier-bullets span::before { content: '—'; color: var(--text3); flex-shrink: 0; font-family: 'JetBrains Mono', monospace; }
 .t-starter .tier-bullets span::before { color: var(--teal); }
@@ -94,23 +95,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 
 /* ── FEATURE TABLE ── */
 .feat-wrap { background: var(--s1); border: 1px solid var(--border); border-radius: var(--r); overflow: hidden; }
-.feat-table { width: 100%; border-collapse: collapse; font-size: 12px; }
-.feat-table th { background: var(--s2); color: var(--text3); font-size: 10px; font-weight: 600; letter-spacing: .08em; text-transform: uppercase; padding: 9px 12px; text-align: left; border-bottom: 1px solid var(--border2); }
-.feat-table th.col-feat { width: 36%; }
-.feat-table th.col-free { width: 16%; text-align: center; color: var(--text2); }
-.feat-table th.col-starter { width: 16%; text-align: center; color: var(--teal); }
-.feat-table th.col-premium { width: 16%; text-align: center; color: var(--purple); }
-.feat-table th.col-contact { width: 16%; text-align: center; color: var(--blue); }
-.feat-table td { padding: 8px 12px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
+.feat-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+.feat-table th { background: var(--s2); color: var(--text3); font-size: 11px; font-weight: 600; letter-spacing: .07em; text-transform: uppercase; padding: 11px 14px; text-align: left; border-bottom: 1px solid var(--border2); }
+.feat-table th.col-feat { width: 40%; }
+.feat-table th.col-free { width: 15%; text-align: center; color: var(--text2); }
+.feat-table th.col-starter { width: 15%; text-align: center; color: var(--teal); }
+.feat-table th.col-premium { width: 15%; text-align: center; color: var(--purple); }
+.feat-table th.col-contact { width: 15%; text-align: center; color: var(--blue); }
+.feat-table td { padding: 10px 14px; border-bottom: 1px solid var(--border); color: var(--text2); vertical-align: middle; }
 .feat-table tr:last-child td { border-bottom: none; }
-.feat-table tr.cat-row td { background: var(--s2); font-size: 10px; font-weight: 600; letter-spacing: .09em; text-transform: uppercase; color: var(--text3); padding: 6px 12px; border-bottom: 1px solid var(--border2); }
+.feat-table tr.cat-row td { background: var(--s2); font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: rgba(255,255,255,0.45); padding: 8px 14px; border-top: 2px solid var(--border2); border-bottom: 1px solid var(--border2); }
+.feat-table tbody tr:nth-child(even):not(.cat-row) td { background: rgba(255,255,255,0.018); }
 .feat-table td.center { text-align: center; }
-.feat-table tr:hover:not(.cat-row) td { background: rgba(255,255,255,0.015); }
-.y { color: var(--teal); font-weight: 600; font-size: 13px; }
-.yp { color: var(--purple); font-weight: 600; font-size: 13px; }
-.yb { color: var(--blue); font-weight: 600; font-size: 13px; }
-.n { color: var(--text3); font-size: 13px; }
-.lim { color: var(--amber); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
+.feat-table tr:hover:not(.cat-row) td { background: rgba(255,255,255,0.035); }
+.y { color: var(--teal); font-weight: 600; font-size: 14px; }
+.yp { color: var(--purple); font-weight: 600; font-size: 14px; }
+.yb { color: var(--blue); font-weight: 600; font-size: 14px; }
+.n { color: var(--text3); font-size: 14px; }
+.lim { color: var(--amber); font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; }
 .forced { color: var(--red); font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 500; }
 .kano { display: inline-block; font-size: 9px; font-family: 'JetBrains Mono', monospace; padding: 1px 5px; border-radius: 2px; margin-left: 4px; vertical-align: middle; }
 .kb { background: var(--s3); color: var(--text3); }
@@ -133,24 +135,24 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 .upsell-seg.s-free .upsell-seg-hd { color: var(--text2); }
 .upsell-seg.s-starter .upsell-seg-hd { color: var(--teal); }
 .upsell-seg.s-premium .upsell-seg-hd { color: var(--purple); }
-.upsell-triggers { font-size: 11px; color: var(--text2); line-height: 1.75; }
+.upsell-triggers { font-size: 12px; color: var(--text2); line-height: 1.75; }
 .upsell-arrow { position: absolute; right: -11px; top: 50%; transform: translateY(-50%); width: 20px; height: 20px; background: var(--s2); border: 1px solid var(--border2); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 9px; z-index: 1; color: var(--text3); }
 
 /* ── REVENUE LEVERS ── */
 .lever-row { display: flex; gap: 10px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: flex-start; }
 .lever-row:last-child { border-bottom: none; }
 .lever-label { font-size: 11px; font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--teal); width: 100px; flex-shrink: 0; padding-top: 1px; }
-.lever-desc { font-size: 12px; color: var(--text2); line-height: 1.5; flex: 1; }
+.lever-desc { font-size: 13px; color: var(--text2); line-height: 1.55; flex: 1; }
 
 /* ── CALLOUT ── */
-.callout { padding: 9px 12px; border-radius: var(--r-sm); font-size: 11px; color: var(--text2); line-height: 1.55; margin-top: 10px; }
+.callout { padding: 10px 14px; border-radius: var(--r-sm); font-size: 12px; color: var(--text2); line-height: 1.6; margin-top: 10px; }
 .callout.amber { background: var(--amber-bg); border: 1px solid var(--amber-border); }
 .callout.teal { background: var(--teal-bg); border: 1px solid var(--teal-border); }
 .callout.purple { background: var(--purple-bg); border: 1px solid var(--purple-border); }
 .callout strong { color: var(--text); font-weight: 600; }
 
 /* ── WITHHELD TABLE ── */
-.wt-row { display: flex; gap: 12px; padding: 9px 0; border-bottom: 1px solid var(--border); align-items: flex-start; font-size: 12px; }
+.wt-row { display: flex; gap: 12px; padding: 10px 0; border-bottom: 1px solid var(--border); align-items: flex-start; font-size: 13px; }
 .wt-row:last-child { border-bottom: none; }
 .wt-feat { font-family: 'JetBrains Mono', monospace; font-size: 11px; color: var(--amber); font-weight: 500; width: 110px; flex-shrink: 0; }
 .wt-why { color: var(--text2); line-height: 1.5; flex: 1; }
@@ -159,579 +161,516 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 .coming-soon { background: var(--s1); border: 1px dashed var(--border2); border-radius: var(--r); padding: 60px 24px; text-align: center; }
 .coming-soon h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .coming-soon p { font-size: 12px; color: var(--text3); max-width: 360px; margin: 0 auto; }
-</style>
+
+        .nu { color: #6b7280; font-size: 12px; }</style>
 </head>
 <body>
 <div class="page">
-
 <!-- HEADER -->
 <div class="hdr">
-  <div class="hdr-left">
-    <h1>Free Tier — Price Plan Redesign</h1>
-    <p>Touch Stay · Offering · April 2026 · Free · Starter · Premium · Contact us</p>
-  </div>
+<div class="hdr-left">
+<h1>Free Tier — Price Plan Redesign</h1>
 </div>
-
+</div>
 <!-- TABS -->
 <div class="tabs">
-  <button class="tab-btn active" onclick="showTab('offering',this)">Offering <span class="badge">active</span></button>
-  <button class="tab-btn" onclick="showTab('experience',this)">Experience <span class="badge">next</span></button>
-  <button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">next</span></button>
+<button class="tab-btn active" onclick="showTab('offering',this)">Offering <span class="badge">ready</span></button>
+<button class="tab-btn" onclick="showTab('experience',this)">Experience <span class="badge">next</span></button>
+<button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">next</span></button>
 </div>
-
 <!-- ══════════ TAB: OFFERING ══════════ -->
 <div class="tab-panel active" id="tab-offering">
-
-  <!-- TIER OVERVIEW -->
-  <div class="sec">
-    <div class="sec-title">Tier overview — persona, pricing &amp; scale</div>
-    <div class="tier-grid">
-
-      <div class="tier-card t-free">
-        <div class="tier-name">Free</div>
-        <div class="tier-target">Free for 1 guidebook</div>
-        <div class="tier-price">$0</div>
-        <div class="tier-price-sub">Forever free · no credit card</div>
-        <div class="tier-bullets">
-          <span>Build &amp; share a guidebook manually</span>
-          <span>AI chatbot — 3 resolved/month</span>
-          <span>Store with 20% commission</span>
-          <span>Ads in guide · TS badge forced</span>
-          <span>No comms · no PMS · no branding</span>
-        </div>
-        <div class="tier-chips">
-          <span class="chip">1 GB max</span>
-          <span class="chip">1 seat</span>
-          <span class="chip">English only</span>
-          <span class="chip">Legacy UI</span>
-          <span class="chip">Self-service</span>
-        </div>
-      </div>
-
-      <div class="tier-card t-starter recommended">
-        <div class="tier-name">Starter</div>
-        <div class="tier-target">Recommended for scaling your business</div>
-        <div class="tier-price">$12.50<span style="font-size:13px;font-weight:400">/mo</span></div>
-        <div class="tier-price-sub">$99/yr · 2 seats</div>
-        <div class="tier-bullets">
-          <span>New GB UI · full branding + no TS badge</span>
-          <span>PMS sync + time-based guest access</span>
-          <span>Scheduled email + full template library</span>
-          <span>GB analytics + review &amp; feedback forms</span>
-          <span>Multiple guidebook creation + Content Hub</span>
-          <span>~2% Store commission + offline payments</span>
-        </div>
-        <div class="tier-chips">
-          <span class="chip">Unlimited GBs</span>
-          <span class="chip">2 seats</span>
-          <span class="chip">Multi-language</span>
-          <span class="chip">12h support</span>
-        </div>
-      </div>
-
-      <div class="tier-card t-premium">
-        <div class="tier-name">Premium</div>
-        <div class="tier-target">Recommended below 50 guidebooks</div>
-        <div class="tier-price">$18.00<span style="font-size:13px;font-weight:400">/mo</span></div>
-        <div class="tier-price-sub">$159/yr · unlimited seats</div>
-        <div class="tier-bullets">
-          <span>SMS + 2WM + AI chatbot unlimited</span>
-          <span>CRM — 25,000 contacts + collection</span>
-          <span>Google Reviews automation + rating dashboard</span>
-          <span>Custom domain + subdomain</span>
-          <span>Content collection + campaign manager</span>
-          <span>Marketplace + custom elements + embeds</span>
-        </div>
-        <div class="tier-chips">
-          <span class="chip">Unlimited GBs</span>
-          <span class="chip">Unlimited seats</span>
-          <span class="chip">&lt;2h support</span>
-          <span class="chip">Personalized Onboarding</span>
-        </div>
-      </div>
-
-      <div class="tier-card t-contact">
-        <div class="tier-name">Contact us</div>
-        <div class="tier-target">Recommended above 50 guidebooks</div>
-        <div class="tier-price" style="font-size:18px;line-height:1.3;padding-top:4px">Custom<br>pricing</div>
-        <div class="tier-price-sub">Tailored contract &amp; SLA</div>
-        <div class="tier-bullets">
-          <span>Everything in Premium</span>
-          <span>Custom feature selection</span>
-          <span>Dedicated account manager</span>
-          <span>Custom SLA &amp; contract terms</span>
-          <span>Volume discount formula</span>
-          <span>Personalized Onboarding at scale</span>
-        </div>
-        <div class="tier-chips">
-          <span class="chip">50+ properties</span>
-          <span class="chip">Unlimited</span>
-          <span class="chip">&lt;2h SLA</span>
-        </div>
-      </div>
-
-    </div>
-  </div>
-
-  <!-- FEATURE MATRIX -->
-  <div class="sec">
-    <div class="sec-title">Full feature matrix</div>
-    <div class="feat-wrap">
-      <table class="feat-table">
-        <thead>
-          <tr>
-            <th class="col-feat">Feature <span style="font-weight:400;opacity:.5">· kano category</span></th>
-            <th class="col-free">Free · $0</th>
-            <th class="col-starter">Starter · $12.50</th>
-            <th class="col-premium">Premium · $18.00</th>
-            <th class="col-contact">Contact us</th>
-          </tr>
-        </thead>
-        <tbody>
-
-          <tr class="cat-row"><td colspan="5">Digital guidebook</td></tr>
-          <tr>
-            <td>Guest view (PWA) <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="lim">Legacy UI</span></td>
-            <td class="center"><span class="y">✓ New UI</span></td>
-            <td class="center"><span class="yp">✓ New UI</span></td>
-            <td class="center"><span class="yb">✓ New UI</span></td>
-          </tr>
-          <tr>
-            <td>Guide creation — manual, PDF, PMS &amp; listing import <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Branding — logo, colors, fonts <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>TS Create guidebook badge</td>
-            <td class="center"><span class="forced">forced on</span></td>
-            <td class="center"><span class="n">removed</span></td>
-            <td class="center"><span class="n">removed</span></td>
-            <td class="center"><span class="n">removed</span></td>
-          </tr>
-          <tr>
-            <td>Ads in guide</td>
-            <td class="center"><span class="forced">shown</span></td>
-            <td class="center"><span class="n">none</span></td>
-            <td class="center"><span class="n">none</span></td>
-            <td class="center"><span class="n">none</span></td>
-          </tr>
-          <tr>
-            <td>Local recommendations + Google Places <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Language support <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="lim">English only</span></td>
-            <td class="center"><span class="y">✓ multi-lang</span></td>
-            <td class="center"><span class="yp">✓ multi-lang</span></td>
-            <td class="center"><span class="yb">✓ multi-lang</span></td>
-          </tr>
-          <tr>
-            <td>Variables / dynamic text <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>QR code links <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Number of guidebooks</td>
-            <td class="center"><span class="lim">1 max</span></td>
-            <td class="center"><span class="y">Unlimited</span></td>
-            <td class="center"><span class="yp">Unlimited</span></td>
-            <td class="center"><span class="yb">Unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Guidebook analytics dashboard <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Content collection — mass guide generation <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>PIN codes <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Guest management (CRM)</td></tr>
-          <tr>
-            <td>Invitations / guest-specific links <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Time-based guidebook access (until departure) <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>PMS / booking data sync <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Contacts DB <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">25,000 contacts</span></td>
-            <td class="center"><span class="yb">Unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Contact collection in guide <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Export contacts <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Short URL / guest slug <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Message Hub</td></tr>
-          <tr>
-            <td>Scheduled emails <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓ unlimited</span></td>
-            <td class="center"><span class="yp">✓ unlimited</span></td>
-            <td class="center"><span class="yb">✓ unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Email template library</td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓ full library</span></td>
-            <td class="center"><span class="yp">✓ full library</span></td>
-            <td class="center"><span class="yb">✓ full library</span></td>
-          </tr>
-          <tr>
-            <td>Scheduled SMS <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓ unlimited</span></td>
-            <td class="center"><span class="yb">✓ unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Two-way messaging — US only <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓ + AI responses</span></td>
-            <td class="center"><span class="yb">✓ + AI responses</span></td>
-          </tr>
-          <tr>
-            <td>AI chatbot in guidebook <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="lim">3 resolved / mo</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓ unlimited</span></td>
-            <td class="center"><span class="yb">✓ unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Campaign manager <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Sentiment &amp; content analysis</td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">AI content assistant</td></tr>
-          <tr>
-            <td>AI writing / content generation</td>
-            <td class="center"><span class="lim">3 prompts / day</span></td>
-            <td class="center"><span class="y">✓ unlimited</span></td>
-            <td class="center"><span class="yp">✓ unlimited</span></td>
-            <td class="center"><span class="yb">✓ unlimited</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Reviews &amp; feedback</td></tr>
-          <tr>
-            <td>Leave a review pop-up (review insurance) <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Google Reviews collection automation <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Store (e-commerce)</td></tr>
-          <tr>
-            <td>Sell products / services <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Online payments (Stripe, Apple/Google Pay) <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Offline / cash payments</td>
-            <td class="center"><span style="color:var(--amber);font-weight:600;font-size:13px">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Platform commission</td>
-            <td class="center"><span class="lim">20%</span></td>
-            <td class="center"><span class="y">~2%</span></td>
-            <td class="center"><span class="yp">~2%</span></td>
-            <td class="center"><span class="yb">~2%</span></td>
-          </tr>
-          <tr>
-            <td>Orders management <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Store dashboard <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="lim">Export CSV only</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Marketplace / experience partners <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Apps &amp; integrations</td></tr>
-          <tr>
-            <td>OTA / PMS integrations <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Viator integrations</td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Custom elements / embed widgets <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-
-          <tr class="cat-row"><td colspan="5">Team &amp; ops management</td></tr>
-          <tr>
-            <td>Team management <span class="kano kb">Baseline</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="y">✓</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Team seats</td>
-            <td class="center"><span class="lim">1</span></td>
-            <td class="center"><span class="lim">2</span></td>
-            <td class="center"><span class="yp">Unlimited</span></td>
-            <td class="center"><span class="yb">Unlimited</span></td>
-          </tr>
-          <tr>
-            <td>Custom domain <span class="kano kp">Performance</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Sub-domain <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span class="yp">✓</span></td>
-            <td class="center"><span class="yb">✓</span></td>
-          </tr>
-          <tr>
-            <td>Personalized Onboarding <span class="kano kd">Delighter</span></td>
-            <td class="center"><span class="n">✗</span></td>
-            <td class="center"><span style="font-size:11px;color:var(--text3)">10+ guides</span></td>
-            <td class="center"><span class="yp">6+ guides</span></td>
-            <td class="center"><span class="yb">✓ full service</span></td>
-          </tr>
-          <tr>
-            <td>Support SLA</td>
-            <td class="center"><span class="lim">Self-service only</span></td>
-            <td class="center"><span class="lim">12h response</span></td>
-            <td class="center"><span class="yp">&lt;2h priority</span></td>
-            <td class="center"><span class="yb">Custom SLA</span></td>
-          </tr>
-
-        </tbody>
-      </table>
-    </div>
-  </div>
-
-  <!-- UPGRADE TRIGGERS -->
-  <div class="sec">
-    <div class="sec-title">Upgrade trigger — what pushes each tier up</div>
-    <div class="upsell-wrap">
-      <div class="upsell-seg s-free">
-        <div class="upsell-seg-hd">Free → Starter</div>
-        <div class="upsell-triggers">
-          Adds a 2nd property → 1-GB cap hit<br>
-          Wants to remove TS badge or brand guide<br>
-          Needs email automation for guest comms<br>
-          PMS sync breaks down when done manually<br>
-          Store commission too high as sales grow<br>
+<!-- TIER OVERVIEW -->
+<div class="sec">
+<div class="sec-title">Tier overview — persona, pricing &amp; scale</div>
+<div class="tier-grid">
+<div class="tier-card t-free">
+<div class="tier-name">Free</div>
+<div class="tier-target">Free for 1 guidebook</div>
+<div class="tier-price">$0</div>
+<div class="tier-price-sub">Forever free · no credit card</div>
+<div class="tier-bullets">
+<span>Build &amp; share a guidebook manually</span>
+<span>AI chatbot — 3 resolved/month</span>
+<span>Store with 20% commission</span>
+<span>Ads in guide · TS badge forced</span>
+<span>No comms · no PMS · no branding</span>
+</div>
+<div class="tier-chips">
+<span class="chip">1 GB max</span>
+<span class="chip">1 seat</span>
+<span class="chip">English only</span>
+<span class="chip">Legacy UI</span>
+<span class="chip">Self-service</span>
+</div>
+</div>
+<div class="tier-card t-starter recommended">
+<div class="tier-name">Starter</div>
+<div class="tier-target">Recommended for scaling your business</div>
+<div class="tier-price">$12.50<span style="font-size:13px;font-weight:400">/mo</span></div>
+<div class="tier-price-sub">$99/yr · 2 seats</div>
+<div class="tier-bullets">
+<span>New GB UI · full branding + no TS badge</span>
+<span>PMS sync + time-based guest access</span>
+<span>Scheduled email + full template library</span>
+<span>GB analytics + review &amp; feedback forms</span>
+<span>Multiple guidebook creation + Content Hub</span>
+<span>~2% Store commission + offline payments</span>
+</div>
+<div class="tier-chips">
+<span class="chip">Unlimited GBs</span>
+<span class="chip">2 seats</span>
+<span class="chip">Multi-language</span>
+<span class="chip">12h support</span>
+</div>
+</div>
+<div class="tier-card t-premium">
+<div class="tier-name">Premium</div>
+<div class="tier-target">Recommended below 50 guidebooks</div>
+<div class="tier-price">$18.00<span style="font-size:13px;font-weight:400">/mo</span></div>
+<div class="tier-price-sub">$159/yr · unlimited seats</div>
+<div class="tier-bullets">
+<span>SMS + 2WM + AI chatbot unlimited</span>
+<span>CRM — 25,000 contacts + collection</span>
+<span>Google Reviews automation + rating dashboard</span>
+<span>Custom domain + subdomain</span>
+<span>Content collection + campaign manager</span>
+<span>Marketplace + custom elements + embeds</span>
+</div>
+<div class="tier-chips">
+<span class="chip">Unlimited GBs</span>
+<span class="chip">Unlimited seats</span>
+<span class="chip">&lt;2h support</span>
+<span class="chip">Personalized Onboarding</span>
+</div>
+</div>
+<div class="tier-card t-contact">
+<div class="tier-name">Contact us</div>
+<div class="tier-target">Recommended above 50 guidebooks</div>
+<div class="tier-price" style="font-size:18px;line-height:1.3;padding-top:4px">Custom<br/>pricing</div>
+<div class="tier-price-sub">Tailored contract &amp; SLA</div>
+<div class="tier-bullets">
+<span>Everything in Premium</span>
+<span>Custom feature selection</span>
+<span>Dedicated account manager</span>
+<span>Custom SLA &amp; contract terms</span>
+<span>Volume discount formula</span>
+<span>Personalized Onboarding at scale</span>
+</div>
+<div class="tier-chips">
+<span class="chip">50+ properties</span>
+<span class="chip">Unlimited</span>
+<span class="chip">&lt;2h SLA</span>
+</div>
+</div>
+</div>
+</div>
+<!-- FEATURE MATRIX -->
+<div class="sec">
+<div class="sec-title">Full feature matrix</div>
+<div class="feat-wrap">
+<table class="feat-table">
+<thead>
+<tr>
+<th class="col-feat">Feature </th>
+<th class="col-free">Free · $0</th>
+<th class="col-starter">Starter · $12.50</th>
+<th class="col-premium">Premium · $18.00</th>
+<th class="col-contact">Contact us</th>
+</tr>
+</thead>
+<tbody>
+<tr class="cat-row"><td colspan="5">Digital guidebook</td></tr>
+<tr>
+<td>Guest view (PWA) </td>
+<td class="center"><span class="lim">Legacy UI</span></td>
+<td class="center"><span class="y">✓ New UI</span></td>
+<td class="center"><span class="yp">✓ New UI</span></td>
+<td class="center"><span class="yb">✓ New UI</span></td>
+</tr>
+<tr>
+<td>Guide creation — manual, PDF, PMS &amp; listing import </td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Branding — logo, colors, fonts </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Guest Banner</td>
+<td class="center"><span class="lim">Shown</span></td>
+<td class="center"><span class="n">removed</span></td>
+<td class="center"><span class="n">removed</span></td>
+<td class="center"><span class="n">removed</span></td>
+</tr>
+<tr>
+<td>Local recommendations + Google Places </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Language support </td>
+<td class="center"><span class="lim">English only</span></td>
+<td class="center"><span class="y">✓ multi-lang</span></td>
+<td class="center"><span class="yp">✓ multi-lang</span></td>
+<td class="center"><span class="yb">✓ multi-lang</span></td>
+</tr>
+<tr>
+<td>Variables / dynamic text </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>QR code links </td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Number of guidebooks</td>
+<td class="center"><span class="lim">1 max</span></td>
+<td class="center"><span class="y">Unlimited</span></td>
+<td class="center"><span class="yp">Unlimited</span></td>
+<td class="center"><span class="yb">Unlimited</span></td>
+</tr>
+<tr>
+<td>Guidebook analytics dashboard </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Content collection — mass guide generation </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>PIN codes </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">Guest management (CRM)</td></tr><tr>
+<td>Leave a review pop-up (review insurance) </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Invitations / guest-specific links </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Time-based guidebook access (until departure) </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>PMS / booking data sync </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Contacts DB </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">25,000 contacts</span></td>
+<td class="center"><span class="yb">Unlimited</span></td>
+</tr>
+<tr>
+<td>Contact collection in guide </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Export contacts </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Short URL / guest slug </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">Message Hub</td></tr>
+<tr>
+<td>Scheduled emails </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓ unlimited</span></td>
+<td class="center"><span class="yp">✓ unlimited</span></td>
+<td class="center"><span class="yb">✓ unlimited</span></td>
+</tr>
+<tr>
+<td>Scheduled SMS </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓ fair use policy</span></td>
+<td class="center"><span class="yp">✓ fair use policy</span></td>
+<td class="center"><span class="yb">✓ fair use policy</span></td>
+</tr>
+<tr>
+<td>Two-way messaging — US only </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓ fair use policy</span></td>
+<td class="center"><span class="yb">✓ fair use policy</span></td>
+</tr>
+<tr>
+<td>AI chatbot in guidebook </td>
+<td class="center"><span class="lim">3 resolved / mo</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓ unlimited</span></td>
+<td class="center"><span class="yb">✓ unlimited</span></td>
+</tr>
+<tr>
+<td>Campaign manager </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Sentiment &amp; content analysis</td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">AI content assistant</td></tr>
+<tr>
+<td>AI writing / content generation</td>
+<td class="center"><span class="lim">3 prompts / day</span></td>
+<td class="center"><span class="y">✓ unlimited</span></td>
+<td class="center"><span class="yp">✓ unlimited</span></td>
+<td class="center"><span class="yb">✓ unlimited</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">Store (e-commerce)</td></tr>
+<tr>
+<td>Sell products / services </td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Online payments (Stripe, Apple/Google Pay) </td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Offline / cash payments</td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Platform commission</td>
+<td class="center"><span class="lim">20%</span></td>
+<td class="center"><span class="y">~2%</span></td>
+<td class="center"><span class="yp">~2%</span></td>
+<td class="center"><span class="yb">~2%</span></td>
+</tr>
+<tr>
+<td>Orders management </td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Store dashboard </td>
+<td class="center"><span class="lim">Export CSV only</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">Apps &amp; integrations</td></tr>
+<tr>
+<td>OTA / PMS integrations </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Viator integrations</td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Custom elements / embed widgets </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr class="cat-row"><td colspan="5">Team &amp; ops management</td></tr>
+<tr>
+<td>Team management </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">✓</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Team seats</td>
+<td class="center"><span class="lim">1</span></td>
+<td class="center"><span class="lim">2</span></td>
+<td class="center"><span class="yp">Unlimited</span></td>
+<td class="center"><span class="yb">Unlimited</span></td>
+</tr>
+<tr>
+<td>Custom domain </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Sub-domain </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">✓</span></td>
+<td class="center"><span class="yb">✓</span></td>
+</tr>
+<tr>
+<td>Personalized Onboarding </td>
+<td class="center"><span class="nu">Need upgrade</span></td>
+<td class="center"><span class="y">10+ guides</span></td>
+<td class="center"><span class="yp">6+ guides</span></td>
+<td class="center"><span class="yb">✓ full service</span></td>
+</tr>
+<tr>
+<td>Support SLA</td>
+<td class="center"><span class="lim">Self-service only</span></td>
+<td class="center"><span class="y">12h response</span></td>
+<td class="center"><span class="yp">&lt;2h priority</span></td>
+<td class="center"><span class="yb">Custom SLA</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- UPGRADE TRIGGERS -->
+<div class="sec">
+<div class="sec-title">Upgrade trigger — what pushes each tier up</div>
+<div class="upsell-wrap">
+<div class="upsell-seg s-free">
+<div class="upsell-seg-hd">Free → Starter</div>
+<div class="upsell-triggers">
+          Adds a 2nd property → 1-GB cap hit<br/>
+          Wants to remove TS badge or brand guide<br/>
+          Needs email automation for guest comms<br/>
+          PMS sync breaks down when done manually<br/>
+          Store commission too high as sales grow<br/>
           Co-host needs hub access (1-seat limit)
         </div>
-        <div class="upsell-arrow">→</div>
-      </div>
-      <div class="upsell-seg s-starter">
-        <div class="upsell-seg-hd">Starter → Premium</div>
-        <div class="upsell-triggers">
-          Needs SMS or two-way messaging at scale<br>
-          Wants AI chatbot (Free has it — Starter doesn't)<br>
-          Building a guest database — needs CRM<br>
-          Professionalising brand — custom domain<br>
-          Growing team — needs unlimited seats<br>
+<div class="upsell-arrow">→</div>
+</div>
+<div class="upsell-seg s-starter">
+<div class="upsell-seg-hd">Starter → Premium</div>
+<div class="upsell-triggers">
+          Needs SMS or two-way messaging at scale<br/>
+          Wants AI chatbot (Free has it — Starter doesn't)<br/>
+          Building a guest database — needs CRM<br/>
+          Professionalising brand — custom domain<br/>
+          Growing team — needs unlimited seats<br/>
           Google Reviews automation strategy
         </div>
-        <div class="upsell-arrow">→</div>
-      </div>
-      <div class="upsell-seg s-premium">
-        <div class="upsell-seg-hd">Premium → Contact us</div>
-        <div class="upsell-triggers">
-          Passes 50 properties — volume deal needed<br>
-          Needs custom contract or SLA terms<br>
-          Requires dedicated account manager<br>
-          Reseller or white-label arrangement<br>
+<div class="upsell-arrow">→</div>
+</div>
+<div class="upsell-seg s-premium">
+<div class="upsell-seg-hd">Premium → Contact us</div>
+<div class="upsell-triggers">
+          Passes 50 properties — volume deal needed<br/>
+          Needs custom contract or SLA terms<br/>
+          Requires dedicated account manager<br/>
+          Reseller or white-label arrangement<br/>
           Custom feature selection or build request
         </div>
-      </div>
+</div>
+</div>
+<div class="callout amber">
+<strong>Chatbot tier gap:</strong> Free gets 3 chatbot interactions/month — Starter gets none. A Free user who wants more chatbot skips Starter entirely and goes straight to Premium. Starter's upgrade path rests on: branding, PMS sync, email automation, multiple GBs, 2nd seat, and the Store commission delta. Consider giving Starter a chatbot allowance (e.g. 20/month) to close this gap.
     </div>
-
-    <div class="callout amber">
-      <strong>Chatbot tier gap:</strong> Free gets 3 chatbot interactions/month — Starter gets none. A Free user who wants more chatbot skips Starter entirely and goes straight to Premium. Starter's upgrade path rests on: branding, PMS sync, email automation, multiple GBs, 2nd seat, and the Store commission delta. Consider giving Starter a chatbot allowance (e.g. 20/month) to close this gap.
-    </div>
-  </div>
-
-  <!-- WITHHELD + REVENUE LEVERS -->
-  <div class="sec">
-    <div class="sec-title">Free tier — deliberate restrictions &amp; revenue levers</div>
-    <div class="g2">
-      <div class="card">
-        <div class="card-hd">What Free withholds — and why</div>
-        <div class="wt-row"><div class="wt-feat">PMS sync</div><div class="wt-why">Manual-only forces engagement. Any host who grows past hobby use needs Starter automation.</div></div>
-        <div class="wt-row"><div class="wt-feat">Email / SMS</div><div class="wt-why">No proactive guest comms. Hosts who want automated pre-arrival / departure messaging must upgrade.</div></div>
-        <div class="wt-row"><div class="wt-feat">Branding</div><div class="wt-why">TS badge always on. Professional hosts who care about guest experience upgrade to remove it.</div></div>
-        <div class="wt-row"><div class="wt-feat">1 GB cap</div><div class="wt-why">Second property is a hard wall. Any growth beyond a single listing forces Starter.</div></div>
-        <div class="wt-row"><div class="wt-feat">20% commission</div><div class="wt-why">Online sales only. 1–2 upsells/month = cost of Starter. Self-converting once Store is active.</div></div>
-        <div class="wt-row"><div class="wt-feat">Legacy UI</div><div class="wt-why">New guidebook UI reserved for paid tiers. Hosts see the difference every time a guest opens a guide.</div></div>
-      </div>
-      <div class="card">
-        <div class="card-hd">Revenue levers on Free</div>
-        <div class="lever-row">
-          <div class="lever-label">Store 20%</div>
-          <div class="lever-desc">$20 avg order × 3–4 orders/mo × 20% = $12–16/mo per active Store host. 70–93 active hosts covers the $1,118/mo new MRR loss.</div>
-        </div>
-        <div class="lever-row">
-          <div class="lever-label">Ad revenue</div>
-          <div class="lever-desc">Passive — scales with guest traffic, not host engagement. Works even for completely inactive hosts. No host action required.</div>
-        </div>
-        <div class="lever-row">
-          <div class="lever-label">Conversions</div>
-          <div class="lever-desc">Blended ARPU on upgrade = $12.43/mo (50% Starter / 40% Premium / 10% Contact us). Break-even at 90 conversions/month from a Free base.</div>
-        </div>
-        <div class="lever-row">
-          <div class="lever-label">TS badge</div>
-          <div class="lever-desc">Every guest-facing Free guide displays "Powered by Touch Stay." At scale this is passive distribution — guests who are also hosts discover the product organically.</div>
-        </div>
-      </div>
-    </div>
-  </div>
-
+</div>
+<!-- WITHHELD + REVENUE LEVERS -->
+<div class="sec">
+<div class="sec-title">Free tier — deliberate restrictions &amp; revenue levers</div>
+<div class="g2">
+<div class="card">
+<div class="card-hd">What Free withholds — and why</div>
+<div class="wt-row"><div class="wt-feat">PMS sync</div><div class="wt-why">Manual-only forces engagement. Any host who grows past hobby use needs Starter automation.</div></div>
+<div class="wt-row"><div class="wt-feat">Email / SMS</div><div class="wt-why">No proactive guest comms. Hosts who want automated pre-arrival / departure messaging must upgrade.</div></div>
+<div class="wt-row"><div class="wt-feat">Branding</div><div class="wt-why">TS badge always on. Professional hosts who care about guest experience upgrade to remove it.</div></div>
+<div class="wt-row"><div class="wt-feat">1 GB cap</div><div class="wt-why">Second property is a hard wall. Any growth beyond a single listing forces Starter.</div></div>
+<div class="wt-row"><div class="wt-feat">20% commission</div><div class="wt-why">Online sales only. 1–2 upsells/month = cost of Starter. Self-converting once Store is active.</div></div>
+<div class="wt-row"><div class="wt-feat">Legacy UI</div><div class="wt-why">New guidebook UI reserved for paid tiers. Hosts see the difference every time a guest opens a guide.</div></div>
+</div>
+<div class="card">
+<div class="card-hd">Revenue levers on Free</div>
+<div class="lever-row">
+<div class="lever-label">Store 20%</div>
+<div class="lever-desc">$20 avg order × 3–4 orders/mo × 20% = $12–16/mo per active Store host. 70–93 active hosts covers the $1,118/mo new MRR loss.</div>
 </div>
 
+
+<div class="lever-row"><div class="lever-label">Viator</div><div class="lever-desc">Viator Experiences — Commissions we gain from these</div></div><div class="lever-row">
+<div class="lever-label">TS badge</div>
+<div class="lever-desc">Every guest-facing Free guide displays "Powered by Touch Stay." At scale this is passive distribution — guests who are also hosts discover the product organically.</div>
+</div>
+</div>
+</div>
+</div>
+</div>
 <!-- ══════════ TAB: EXPERIENCE ══════════ -->
 <div class="tab-panel" id="tab-experience">
-  <div class="coming-soon">
-    <h3>Experience — coming next</h3>
-    <p>How and when users encounter the Free plan: pricing page layout, trial flow, billing page behaviour, upgrade prompts, and in-product upgrade moments.</p>
-  </div>
+<div class="coming-soon">
+<h3>Experience — coming next</h3>
+<p>How and when users encounter the Free plan: pricing page layout, trial flow, billing page behaviour, upgrade prompts, and in-product upgrade moments.</p>
 </div>
-
+</div>
 <!-- ══════════ TAB: ACQUISITION ══════════ -->
 <div class="tab-panel" id="tab-acquisition">
-  <div class="coming-soon">
-    <h3>Acquisition &amp; Marketing — coming next</h3>
-    <p>Channel strategy, messaging framework, and go-to-market approach for reaching the unserved market of hosts who would never start a paid trial.</p>
-  </div>
+<div class="coming-soon">
+<h3>Acquisition &amp; Marketing — coming next</h3>
+<p>Channel strategy, messaging framework, and go-to-market approach for reaching the unserved market of hosts who would never start a paid trial.</p>
 </div>
-
 </div>
-
+</div>
 <script>
 function showTab(id, btn) {
   document.querySelectorAll('.tab-panel').forEach(function(p) { p.classList.remove('active'); });
