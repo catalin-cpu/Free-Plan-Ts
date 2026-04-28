@@ -180,6 +180,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">next</span></button>
 </div>
 <!-- ══════════ TAB: OFFERING ══════════ -->
+<!-- TAB:offering START -->
 <div class="tab-panel active" id="tab-offering">
 <!-- TIER OVERVIEW -->
 <div class="sec">
@@ -661,13 +662,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
   <button onclick="showTab('experience', document.querySelector('.tab-btn[onclick*=experience]'))" style="background:rgba(45,212,191,0.1);color:#2dd4bf;border:1px solid rgba(45,212,191,0.35);border-radius:7px;padding:10px 24px;font-size:13px;font-weight:600;cursor:pointer;letter-spacing:0.02em;">Explore the Experience →</button>
 </div>
 </div>
-<!-- ══════════ TAB: EXPERIENCE ══════════ -->
+<!-- TAB:offering END -->
+<!-- TAB:experience START -->
 <div class="tab-panel" id="tab-experience">
 
   <!-- SECTION 1: Flow diagram -->
   <div class="sec">
     <div class="sec-title">Experience flow — acquisition, retention &amp; viral loop</div>
     <div class="card" style="padding:12px;">
+      <!-- SVG ZONES: Loop1 y=0–315 | Loop2 y=316–539 | Loop3 y=540–782 | Passive y=800–882 | viewBox 0 0 680 900 -->
       <svg width="100%" viewBox="0 0 680 900" xmlns="http://www.w3.org/2000/svg" style="display:block;font-family:'Inter',sans-serif;">
         <defs>
           <marker id="arr-exp" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
@@ -820,13 +823,15 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 
 
 </div>
-<!-- ══════════ TAB: ACQUISITION ══════════ -->
+<!-- TAB:experience END -->
+<!-- TAB:acquisition START -->
 <div class="tab-panel" id="tab-acquisition">
 <div class="coming-soon">
 <h3>Acquisition &amp; Marketing — coming next</h3>
 <p>Channel strategy, messaging framework, and go-to-market approach for reaching the unserved market of hosts who would never start a paid trial.</p>
 </div>
 </div>
+<!-- TAB:acquisition END -->
 </div>
 <script>
 function showTab(id, btn) {
