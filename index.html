@@ -362,7 +362,14 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr>
 <td>Number of guidebooks</td>
-<td class="center"><span class="lim">1 max</span></td>
+<td class="center"><span class="y">Unlimited</span></td>
+<td class="center"><span class="y">Unlimited</span></td>
+<td class="center"><span class="yp">Unlimited</span></td>
+<td class="center"><span class="yb">Unlimited</span></td>
+</tr>
+<tr>
+<td>Guidebook views <span style="font-size:10px;color:var(--text3);font-weight:400;">↑ soft limit applies</span></td>
+<td class="center"><span class="lim">200 / month</span></td>
 <td class="center"><span class="y">Unlimited</span></td>
 <td class="center"><span class="yp">Unlimited</span></td>
 <td class="center"><span class="yb">Unlimited</span></td>
@@ -439,7 +446,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr class="cat-row"><td colspan="5">Message Hub</td></tr>
 <tr>
-<td>Scheduled emails </td>
+<td>Scheduled emails <span style="font-size:10px;color:var(--text3);font-weight:400;">↑ soft limit applies</span></td>
 <td class="center"><span class="lim">8 / month</span></td>
 <td class="center"><span class="y">✓ unlimited</span></td>
 <td class="center"><span class="yp">✓ unlimited</span></td>
@@ -598,6 +605,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 </tbody>
 </table>
+<div style="margin-top:12px;padding:10px 14px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:6px;font-size:11px;color:var(--text2);line-height:1.6;">
+  <span style="color:#f59e0b;font-weight:600;">↑ How soft limits work</span> — All limits marked ↑ (views, emails, etc.) follow the same two-stage model: at <strong>100% usage</strong> you receive an email nudge to upgrade; feature access is only paused at <strong>130% usage</strong>. This gives a comfortable buffer so no guest experience is disrupted by an accidental spike.
+</div>
 </div>
 </div>
 <!-- UPGRADE TRIGGERS -->
@@ -607,7 +617,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="upsell-seg s-free">
 <div class="upsell-seg-hd">Free → Starter</div>
 <ul class="upsell-triggers">
-          <li>Adds a 2nd property → 1-GB cap hit</li>
+          <li>Guidebook views hit the 200/mo soft limit (130% = access paused)</li>
           <li>Wants to remove TS badge or brand guide</li>
           <li>Needs unlimited scheduling — Free capped at 4/mo email + SMS</li>
           <li>PMS sync breaks down when done manually</li>
