@@ -203,9 +203,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <!-- TABS -->
 <div class="tabs">
 <button class="tab-btn active" onclick="showTab('offering',this)">Offering <span class="badge">ready</span></button>
-<button class="tab-btn" onclick="showTab('experience',this)">Experience <span class="badge">next</span></button>
-<button class="tab-btn" onclick="showTab('simulation',this)">Free Plan Simulation <span class="badge">ready</span></button>
-<button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">next</span></button>
+<button class="tab-btn" onclick="showTab('experience',this)">Experience <span class="badge">ready</span></button>
+<button class="tab-btn" onclick="showTab('simulation',this)">Free Plan Simulation <span class="badge">WIP</span></button>
+<button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">WIP</span></button>
 </div>
 <!-- ══════════ TAB: OFFERING ══════════ -->
 <!-- TAB:offering START -->
@@ -877,84 +877,217 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="tab-panel" id="tab-simulation">
 
   <div class="sec">
-    <div class="sec-title">Free plan landgrab — 12-month MRR simulation</div>
+    <div class="sec-title">Free plan landgrab — 12-month MRR simulation, motion by motion</div>
     <div class="sim-anchors">
-      <b>Fixed anchors — May 2026 KPI actuals:</b> Paying hosts <b>9,876</b> · MRR <b>$242.9k</b> · <b>168</b> new G4s/mo at <b>$18.3</b> new-G4 ARPU (= MRR-new ÷ G4s, KPI report) · G4 mix <b>Starter 54% / Growth 36% / Pro 10%</b> · logo churn <b>1.6%</b>/mo · net MRR churn <b>0.7%</b>/mo (baseline reproduces actual +0.57%/mo MRR growth).<br>
-      <b>Migration map (Free/Starter/Pro):</b> upper Growth + Pro → Pro · lower Growth + upper Starter → Starter · <span style="color:var(--red)">lower Starter → Free</span>. <b>Churn-to-Free:</b> a share of monthly churners (~158 hosts) park on Free instead of leaving — no MRR loss vs baseline, pure winback + referral fuel.
-      <b>Breakeven check:</b> at 27% of G4s migrating to Free, paid new-G4 ARPU must reach <b>$25.1 (+37%)</b> to fully offset the lost cohort — the +20–30% re-tier uplift alone does not close the gap; upgrades, marketing lift and referrals must cover the rest.
+      <div style="font-weight:600;color:var(--text);margin-bottom:6px;">Fixed anchors — May 2026 KPI actuals</div>
+      <ul style="line-height:1.8;padding-left:16px;margin:0 0 10px 0;columns:2;column-gap:32px;">
+        <li>Paying hosts: <b>9,876</b> · MRR: <b>$242.9k</b></li>
+        <li>Web visitors: <b>29.3k</b>/mo</li>
+        <li>Signups (G1): <b>612</b>/mo = <b>2.1%</b> of visitors</li>
+        <li>New G4s: <b>168</b>/mo = <b>27.4%</b> of G1s, at <b>$18.3</b> ARPU</li>
+        <li>G4 mix: <b>Starter 54% / Growth 36% / Pro 10%</b></li>
+        <li>Logo churn: <b>1.6%</b>/mo · net MRR churn: <b>0.7%</b>/mo</li>
+      </ul>
+      <div style="font-weight:600;color:var(--text);margin-bottom:6px;">Migration map (Free / Starter / Pro)</div>
+      <ul style="line-height:1.8;padding-left:16px;margin:0 0 10px 0;">
+        <li>Upper Growth + Pro → <b style="color:var(--purple)">Pro</b></li>
+        <li>Lower Growth + upper Starter → <b style="color:var(--teal)">Starter</b></li>
+        <li>Lower Starter → <b style="color:var(--red)">Free</b> (modeled inside the G1→Paid rate in §3)</li>
+      </ul>
+      <div style="color:var(--text3);">Each motion has its own controls and MRR-impact chart · the section impacts sum exactly to the total at the bottom.</div>
     </div>
+    <div class="sim-presets" style="width:280px;">
+      <button id="pbtn-pess" onclick="simPreset('pess')">Pessimistic</button>
+      <button id="pbtn-base" class="active" onclick="simPreset('base')">Base</button>
+      <button id="pbtn-opt" onclick="simPreset('opt')">Optimistic</button>
+    </div>
+  </div>
 
-    <div class="sim-layout">
-      <!-- CONTROLS -->
-      <div class="card">
-        <div class="sim-presets">
-          <button id="pbtn-pess" onclick="simPreset('pess')">Pessimistic</button>
-          <button id="pbtn-base" class="active" onclick="simPreset('base')">Base</button>
-          <button id="pbtn-opt" onclick="simPreset('opt')">Optimistic</button>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--text3)"></span>Baseline &amp; re-tier pricing</h4>
+  <!-- 1 BASELINE (full width, no chart) -->
+  <div class="sec">
+    <div class="sec-title">1 · Baseline — what happens if we change nothing</div>
+    <div class="card">
+      <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
+        <li>Keep selling Starter / Growth / Pro as today — this is the reference line every motion is measured against</li>
+        <li>New G4s add at today's <b style="color:var(--text)">$18.3</b> new-G4 ARPU; the base decays at 0.7%/mo net MRR churn</li>
+        <li>Preset to match reality: it reproduces the actual <b style="color:var(--text)">+0.57%/mo</b> MRR growth from the KPI report (Dec '25 → May '26)</li>
+      </ul>
+      <details style="margin-bottom:4px;">
+        <summary style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);cursor:pointer;margin-bottom:10px;">Edit baseline assumptions — optional</summary>
+        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;">
           <div class="sim-slider"><label>New paid (G4) / month <b id="vNP"></b></label><input type="range" id="NP" min="100" max="300" step="1"></div>
           <div class="sim-slider"><label>Logo churn / month <b id="vPC"></b></label><input type="range" id="PC" min="0" max="5" step="0.1"></div>
           <div class="sim-slider"><label>Net MRR churn / month <b id="vNC"></b></label><input type="range" id="NC" min="0" max="3" step="0.1"></div>
-          <div class="sim-slider"><label>Paid new-G4 ARPU after re-tier (now $18.3) <b id="vAPN"></b></label><input type="range" id="APN" min="15" max="30" step="0.1"></div>
         </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--red)"></span>Migration &amp; losses</h4>
-          <div class="sim-slider"><label>Lower-Starter G4s migrating to Free <b id="vSLW"></b></label><input type="range" id="SLW" min="0" max="100" step="5"></div>
-          <div class="sim-slider"><label>One-time downgrade of Starter base (m1) <b id="vD0"></b></label><input type="range" id="D0" min="0" max="15" step="0.5"></div>
-          <div class="sim-slider"><label>Ongoing Starter downgrade / month <b id="vDM"></b></label><input type="range" id="DM" min="0" max="2" step="0.05"></div>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--amber)"></span>Churn-to-Free (winback pool)</h4>
-          <div class="sim-slider"><label>Churners parking on Free vs leaving <b id="vPRK"></b></label><input type="range" id="PRK" min="0" max="80" step="5"></div>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--teal)"></span>Gain 1 — Free→Paid upgrade pressure</h4>
-          <div class="sim-slider"><label>Cohort conversion (70% lands m1–2) <b id="vCC"></b></label><input type="range" id="CC" min="0" max="25" step="0.5"></div>
-          <div class="sim-slider"><label>Convert ARPU (Starter tier) <b id="vAST"></b></label><input type="range" id="AST" min="10" max="20" step="0.5"></div>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--blue)"></span>Gain 2 — marketing free-plan lift</h4>
-          <div class="sim-slider"><label>Max signup lift (lands on Free) <b id="vLIFT"></b></label><input type="range" id="LIFT" min="0" max="300" step="5"></div>
-          <div class="sim-slider"><label>Ramp to max (months) <b id="vRMP"></b></label><input type="range" id="RMP" min="1" max="8" step="1"></div>
-          <div class="sim-slider"><label>Free base inactivity churn / month <b id="vFC"></b></label><input type="range" id="FC" min="0" max="15" step="0.5"></div>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--purple)"></span>Gain 3 — referral accumulation</h4>
-          <div class="sim-slider"><label>Hosts actively sending guidebooks <b id="vAS"></b></label><input type="range" id="AS" min="0" max="100" step="5"></div>
-          <div class="sim-slider"><label>Guest opens / active host / month <b id="vGH"></b></label><input type="range" id="GH" min="0" max="40" step="1"></div>
-          <div class="sim-slider"><label>Exposure → host-signup rate <b id="vGS"></b></label><input type="range" id="GS" min="0" max="0.2" step="0.005"></div>
-          <div class="sim-slider"><label>Lag: exposure → signup (months) <b id="vLAG"></b></label><input type="range" id="LAG" min="0" max="4" step="1"></div>
-          <div class="sim-slider"><label>Referral signups landing on Free <b id="vRF"></b></label><input type="range" id="RF" min="0" max="100" step="5"></div>
-        </div>
+      </details>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Paying hosts @m12: <b id="s1A" style="color:var(--text);font-weight:600;"></b></div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">MRR @m12: <b id="s1M" style="color:var(--text);font-weight:600;"></b></div>
       </div>
+      <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);line-height:1.6;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">HOW IT'S COMPUTED — MRR(t) = MRR(t−1) × (1 − net churn) + new G4s × $18.3</div>
+        <div style="font-size:11px;color:var(--text);background:var(--s2);border-left:2px solid var(--text3);border-radius:0 5px 5px 0;padding:8px 10px;margin-top:12px;line-height:1.5;"><b>Takeaway:</b> do nothing and MRR still grows ~0.6%/mo — but on a funnel that shrank 44% YoY. That silent decline is what this project answers.</div>
+    </div>
+  </div>
 
-      <!-- OUTPUTS -->
+  <!-- 2 FREE -> PAID -->
+  <div class="sec">
+    <div class="sec-title">2 · Free → Paid motion — the upgrade engine</div>
+    <div class="card" style="margin-bottom:14px;">
+      <div style="font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:8px;">Of every 100 accounts entering Free in a month, <b style="color:var(--teal)">X%</b> upgrade during their lifetime:</div>
+        <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
+          <li><b style="color:var(--text)">70% upgrade within months 1–2</b> — the Free limits (50 views/guidebook, 8 emails/mo, 1 seat, manual PMS) are hit at the first real bookings</li>
+          <li>The rest trickle in by month 6, reduced by Free-base churn along the way</li>
+          <li>Converts mirror today's paid mix: <b style="color:var(--text)">46% choose Pro</b> (= current Growth+Pro share of G4s), the rest Starter</li>
+          <li>Benchmarks: freemium medians 2–5% · usage-capped products 8–15% — default sits low because the Free pool now includes today's non-converting signups</li>
+        </ul>
+    </div>
+    <div class="sim-layout">
+      <div class="card">
+        <div class="sim-slider"><label>Lifetime conversion of each Free cohort <b id="vCC"></b></label><input type="range" id="CC" min="0" max="25" step="0.5"></div>
+        <div class="sim-slider"><label>Converts choosing Pro $18 (rest → Starter $12.50) <b id="vPSH"></b></label><input type="range" id="PSH" min="0" max="70" step="1"></div>
+        <div class="sim-slider"><label>Free base inactivity churn / month <b id="vFC"></b></label><input type="range" id="FC" min="0" max="15" step="0.5"></div>
+        </div>
       <div>
-        <div class="sim-kpis">
-          <div class="sim-kpi"><div class="v" id="kMrr"></div><div class="l">MRR delta @ month 12 (vs baseline)</div></div>
-          <div class="sim-kpi"><div class="v" id="kCum"></div><div class="l">Cumulative revenue delta, 12 mo</div></div>
-          <div class="sim-kpi"><div class="v" id="kBE"></div><div class="l">Monthly delta turns positive</div></div>
-          <div class="sim-kpi"><div class="v" id="kPB"></div><div class="l">Cumulative payback month</div></div>
-          <div class="sim-kpi"><div class="v" id="kRef"></div><div class="l">Referral-sourced hosts by m12</div></div>
-          <div class="sim-kpi"><div class="v" id="kConv"></div><div class="l">Free→Paid converts by m12</div></div>
-          <div class="sim-kpi"><div class="v" id="kFree"></div><div class="l">Free base @ month 12</div></div>
+        <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cSec2"></canvas></div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Converts by m12: <b id="s2A" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">MRR impact @m12: <b id="s2M" style="color:var(--text);font-weight:600;"></b></div>
         </div>
-
-        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cMRR"></canvas></div></div>
-        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cDelta"></canvas></div></div>
-        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cBase"></canvas></div></div>
-
-        <div class="callout teal">
-          <strong>Assumption rationale &amp; benchmarks.</strong>
-          <strong>① Upgrade pressure (10% cohort conversion, 70% in months 1–2):</strong> the Free caps bind fast for any real host — 50 views/guidebook is consumed by ~4 bookings × 10–15 guest opens within the first 1–2 months of stays; 8 emails/mo ≈ 4 bookings × 2 scheduled messages; manual-only PMS sync breaks at the first busy turnover cycle. So pressure peaks at months 1–2, exactly the deliberate design of the Free tier. Magnitude: freemium free→paid medians run 2–5% (OpenView/ProfitWell), usage-capped products 8–15%, and this Free base skews high-intent (trial-expired fallbacks + active hosts), so 10% base / 5% pess / 15% opt.
-          <strong>② Marketing lift (+120% signups, 4-month ramp):</strong> removing the paywall/trial gate typically converts 2–3× more visitors to signups (visitor→signup moves from ~2% to 4–6%; TS today: 612 G1s on 29.3k web users = 2.1%). The lift is mostly conversion-side and immediate; "free guidebook" SEO/listicle traffic compounds slower — hence the ramp. +120% ≈ 1,350 signups/mo at max vs ~612 today.
-          <strong>③ Referral accumulation (0.045% exposure→signup):</strong> exposures = all hosts × 55% active × ~10 guest opens/mo ≈ 60–70k/mo growing with the Free base. Chain: incentivized footer banner CTR 1–3% × clicker→host-signup 2–5% (few guests are hosts) ≈ 0.03–0.09%. Benchmark: referral programs drive 5–15% of SaaS signups (Dropbox's 35% is the outlier) — defaults land at ~30 signups/mo ≈ 4–5% of G2s, growing.
-          <strong>⚠ Pricing red flag:</strong> at flat list prices ($12.50/$18) the paid new-G4 ARPU would be ~$11–13 vs today's $18.3 — a decrease. The +25% default assumes per-property pricing and/or add-on monetization (SMS budgets, store commission). Breakeven is +37% ($25.1). Validate this in the first 60 days of G4 plan-mix data post-launch.
-        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);line-height:1.6;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">HOW IT'S COMPUTED — upgrades(t) = Σ inflow(t−a) × conv% × timing(a) × survival(a), a=1..6 · each convert adds the Starter/Pro mix price, then decays at net churn · this chart counts upgrades from the funnel + downgraded pools; marketing/referral shares shown in their sections</div>
+        <div style="font-size:11px;color:var(--text);background:var(--teal-bg);border-left:2px solid var(--teal);border-radius:0 5px 5px 0;padding:8px 10px;margin-top:12px;line-height:1.5;"><b>Takeaway:</b> the Free plan's usage limits are the sales force — most upgrade value lands within 60 days of a cohort joining Free.</div>
       </div>
     </div>
+  </div>
+
+  <!-- 3 MARKETING / NEW FUNNEL -->
+  <div class="sec">
+    <div class="sec-title">3 · Marketing uplift — the new funnel</div>
+    <div class="card" style="margin-bottom:14px;">
+      <div style="font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:8px;">Marketing pushes the Free plan → more traffic, and the Free door reshapes how visitors convert:</div>
+        <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
+          <li><b style="color:var(--text)">Traffic uptake</b> — paid campaigns + "free guidebook" SEO; ramps up over months</li>
+          <li><b style="color:var(--text)">Visitor → G1 jumps well above today's 2.1%</b> — the $0 no-credit-card door captures people who would never start a trial</li>
+          <li><b style="color:var(--text)">G1 → Paid falls below today's 27.4%</b> — some would-be trialists (the lower-Starter cohort) choose Free instead; the bet is that volume offsets the rate drop and direct paid G4s end up flat-to-up</li>
+          <li>Every G1 that doesn't go paid lands on Free (today those signups simply vanish) and feeds the §2 engine</li>
+        </ul>
+    </div>
+    <div class="sim-layout">
+      <div class="card">
+        <div class="sim-slider"><label>Max traffic lift from campaigns/SEO <b id="vTRF"></b></label><input type="range" id="TRF" min="0" max="100" step="5"></div>
+        <div class="sim-slider"><label>Ramp to max traffic (months) <b id="vRMP"></b></label><input type="range" id="RMP" min="1" max="8" step="1"></div>
+        <div class="sim-slider"><label>Visitor → G1 signup rate (now 2.1%) <b id="vS1"></b></label><input type="range" id="S1" min="1" max="8" step="0.1"></div>
+        <div class="sim-slider"><label>G1 → Paid direct rate (now 27.4%) <b id="vG4R"></b></label><input type="range" id="G4R" min="4" max="30" step="0.5"></div>
+        <details style="margin-top:10px;">
+          <summary style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--text3);cursor:pointer;margin-bottom:10px;">Re-tier pricing on direct paid — optional</summary>
+          <div class="sim-slider"><label>Paid new-G4 ARPU after re-tier (now $18.3) <b id="vAPN"></b></label><input type="range" id="APN" min="15" max="30" step="0.1"></div>
+          <div style="font-size:10px;color:var(--text3);line-height:1.5;">⚠ At flat list prices ($12.50/$18) this would be ~$11–13. The +25% default assumes per-property pricing &amp; add-ons. Validate within 60 days of launch.</div>
+        </details>
+        </div>
+      <div>
+        <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cSec3"></canvas></div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">G1s/mo @m12: <b id="s3G" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Direct paid/mo @m12 (now 168): <b id="s3P" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Free inflow/mo @m12: <b id="s3F" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">MRR impact @m12: <b id="s3M" style="color:var(--text);font-weight:600;"></b></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);line-height:1.6;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">HOW IT'S COMPUTED — G1(t) = 29.3k × (1+traffic(t)) × signup% · direct paid(t) = G1(t) × G1→Paid% at re-tier ARPU · free inflow(t) = G1(t) − direct paid(t) → §2 engine · this chart shows the direct-paid delta vs baseline's 168 × $18.3</div>
+        <div style="font-size:11px;color:var(--text);background:var(--blue-bg);border-left:2px solid var(--blue);border-radius:0 5px 5px 0;padding:8px 10px;margin-top:12px;line-height:1.5;"><b>Takeaway:</b> expect a launch dip — direct paid G4s sag while traffic ramps, then recover; the Free pool repays the dip through the §2 engine. The whole bet is volume × rate.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 REFERRALS + CHURN-TO-FREE -->
+  <div class="sec">
+    <div class="sec-title">4 · Referrals — guests &amp; hosts inviting hosts (churn → Free feeds it)</div>
+    <div class="card" style="margin-bottom:14px;">
+      <div style="font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:8px;">One flywheel, two funnels feeding it: more Free accounts → more guests see the banner → more referred hosts → more traffic.</div>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--purple);margin-bottom:6px;">Primary — guest referrals</div>
+        <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 10px 0;">
+          <li><b style="color:var(--text)">Free hosts carry the banner — it's imposed on their guidebooks.</b> Paid hosts can <i>activate</i> the referral program (banner off by default, opt-in with incentive)</li>
+          <li>Exposures = [Free hosts + paid hosts × low effectiveness factor] × avg guest guidebook opens/mo (~8 ≈ 4 bookings × 2 guests; replace with real guide traffic)</li>
+          <li>Chain: incentivized banner CTR 1–3% × clicker→host-signup 2–5% ≈ <b style="color:var(--text)">0.03–0.09%</b> per exposure</li>
+          <li>Benchmark: referral programs drive 5–15% of SaaS signups (Dropbox's 35% is the outlier)</li>
+        </ul>
+        <div style="font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--amber);margin-bottom:6px;">Secondary funnel — churn → Free</div>
+        <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
+          <li>A share of the ~158 monthly churners park on Free instead of leaving — zero cost, they churned in both scenarios</li>
+          <li>Their guests keep seeding banner exposures from day one</li>
+          <li>A few come back — a small lifetime rate spread over <b style="color:var(--text)">months 6–12</b> (next season, new property)</li>
+        </ul>
+    </div>
+    <div class="sim-layout">
+      <div class="card">
+        <div class="sim-slider"><label>Guidebook views by guests, per host per month <b id="vGH"></b></label><input type="range" id="GH" min="0" max="30" step="1">
+        <div style="font-size:10px;color:var(--text3);line-height:1.5;margin-top:2px;">Every guest open = one view of the referral banner. Averaged over ALL hosts incl. months with no bookings (default 8 ≈ 4 bookings × 2 guests).</div></div>
+        <div class="sim-slider"><label>Paid Host Referral — % of paid hosts activating it <b id="vPFX"></b></label><input type="range" id="PFX" min="0" max="50" step="5">
+        <div style="font-size:10px;color:var(--text3);line-height:1.5;margin-top:2px;">Banner is forced on Free guidebooks. Paid hosts can opt in to the referral program (incentivized) — this is the share that activates it.</div></div>
+        <div class="sim-slider"><label>Exposure → host-signup rate <b id="vGS"></b></label><input type="range" id="GS" min="0" max="0.2" step="0.005"></div>
+        <div class="sim-slider"><label>Lag: exposure → signup (months) <b id="vLAG"></b></label><input type="range" id="LAG" min="0" max="4" step="1"></div>
+        <div class="sim-slider"><label>Referral signups landing on Free <b id="vRF"></b></label><input type="range" id="RF" min="0" max="100" step="5"></div>
+        <div class="sim-slider"><label>Churners parking on Free vs leaving <b id="vPRK"></b></label><input type="range" id="PRK" min="0" max="80" step="5"></div>
+        <div class="sim-slider"><label>Winback conversion, spread m6–12 <b id="vWBC"></b></label><input type="range" id="WBC" min="0" max="15" step="0.5"></div>
+        </div>
+      <div>
+        <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cSec4"></canvas></div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Banner views/mo m1 → m12: <b id="s4E" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Referred signups by m12: <b id="s4S" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Parked churners: <b id="s4P" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Paid accounts gained: <b id="s4A" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">MRR impact @m12: <b id="s4M" style="color:var(--text);font-weight:600;"></b></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);line-height:1.6;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">HOW IT'S COMPUTED — banner views(t) = [Free hosts + paid hosts × opt-in%] × guidebook views per host · referred(t) = banner views(t−lag) × signup rate · winback(t) = parked cohorts × rate÷7, ages 6–12 · paid referrals + converts add at the Starter/Pro mix price</div>
+        <div style="font-size:11px;color:var(--text);background:var(--purple-bg);border-left:2px solid var(--purple);border-radius:0 5px 5px 0;padding:8px 10px;margin-top:12px;line-height:1.5;"><b>Takeaway:</b> the referral engine runs on the Free base, not the paid base — every Free account is a forced antenna, so this channel starts near zero and scales with the landgrab itself.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5 BASE MIGRATION LOSS -->
+  <div class="sec">
+    <div class="sec-title">5 · One-time migration loss — existing base moving to Free</div>
+    <div class="card" style="margin-bottom:14px;">
+      <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
+          <li>Part of the existing Starter base downgrades to Free: a <b style="color:var(--text)">one-time wave at launch</b> + a small monthly trickle</li>
+          <li>Gross loss of <b style="color:var(--text)">$12.50/host/mo</b>, accumulating</li>
+          <li>The new-G4 migration loss is <i>not</i> here — it lives inside the lower G1→Paid rate in §3</li>
+        </ul>
+    </div>
+    <div class="sim-layout">
+      <div class="card">
+        <div class="sim-slider"><label>One-time downgrade of Starter base (m1) <b id="vD0"></b></label><input type="range" id="D0" min="0" max="15" step="0.5"></div>
+        <div class="sim-slider"><label>Ongoing Starter downgrade / month <b id="vDM"></b></label><input type="range" id="DM" min="0" max="2" step="0.05"></div>
+        </div>
+      <div>
+        <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cSec5"></canvas></div></div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-top:12px;">
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">Hosts downgraded by m12: <b id="s5A" style="color:var(--text);font-weight:600;"></b></div>
+          <div style="font-family:'JetBrains Mono',monospace;font-size:10px;padding:4px 9px;background:var(--s2);border:1px solid var(--border2);border-radius:4px;color:var(--text3);">MRR impact @m12: <b id="s5M" style="color:var(--text);font-weight:600;"></b></div>
+        </div>
+        <div style="font-family:'JetBrains Mono',monospace;font-size:9.5px;color:var(--text3);line-height:1.6;margin-top:10px;border-top:1px solid var(--border);padding-top:8px;">HOW IT'S COMPUTED — loss(t) = downgraded hosts × $12.50, accumulating and decaying at net churn · downgraded hosts join the Free pool and may upgrade back via §2</div>
+        <div style="font-size:11px;color:var(--text);background:var(--red-bg);border-left:2px solid var(--red);border-radius:0 5px 5px 0;padding:8px 10px;margin-top:12px;line-height:1.5;"><b>Takeaway:</b> the visible bill — ~213 Starter hosts × $12.50 in month 1, then a trickle. Bounded and front-loaded; the funnel effects in §3 dwarf it either way.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 TOTAL -->
+  <div class="sec">
+    <div class="sec-title">6 · Total — all motions combined</div>
+    <div class="sim-kpis">
+      <div class="sim-kpi"><div class="v" id="kMrr"></div><div class="l">MRR delta @ month 12 (vs baseline)</div></div>
+      <div class="sim-kpi"><div class="v" id="kCum"></div><div class="l">Cumulative revenue delta, 12 mo</div></div>
+      <div class="sim-kpi"><div class="v" id="kBE"></div><div class="l">Monthly delta turns positive</div></div>
+      <div class="sim-kpi"><div class="v" id="kPB"></div><div class="l">Cumulative payback month</div></div>
+      <div class="sim-kpi"><div class="v" id="kRef"></div><div class="l">Referral-sourced hosts by m12</div></div>
+      <div class="sim-kpi"><div class="v" id="kConv"></div><div class="l">Free→Paid converts by m12</div></div>
+      <div class="sim-kpi"><div class="v" id="kFree"></div><div class="l">Free base @ month 12</div></div>
+    </div>
+    <div class="g2" style="margin-bottom:14px;">
+      <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cMRR"></canvas></div></div>
+      <div class="sim-chart-card" style="margin-bottom:0;"><div class="sim-chartbox"><canvas id="cDelta"></canvas></div></div>
+    </div>
+    <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cBase"></canvas></div></div>
+    <div style="font-size:11px;color:var(--text);background:var(--s2);border-left:2px solid var(--teal);border-radius:0 5px 5px 0;padding:8px 10px;line-height:1.5;"><b>Takeaway:</b> losses front-load and plateau; gains start near zero and compound — judge the project by the slope at month 12, not the cumulative.</div>
   </div>
 
 </div>
@@ -982,23 +1115,30 @@ function showTab(id, btn) {
 const SIM_B0 = 9876;          // paying hosts (fixed)
 const SIM_ABL = 24.6;         // blended base ARPU $/mo (fixed)
 const SIM_A0 = 18.3;          // current new-G4 ARPU $/mo = MRR-new ÷ G4s (KPI report 2026 avg)
+const SIM_V0 = 29300;         // current web visitors/mo (excl. guides)
+const SIM_G1R = 2.1;          // current visitor→signup % (612 / 29.3k)
+const SIM_G4R0 = 27.4;        // current G1→G4 % (168 / 612)
 const SIM_SS = 0.54;          // Starter share of new G4s (Mar–May 2026)
-const SIM_W = [0.35,0.35,0.15,0.08,0.04,0.03]; // Free→Paid conversion timing: 70% in months 1–2, tail to m6
-const SIM_IDS = ['NP','PC','NC','APN','SLW','D0','DM','PRK','CC','AST','LIFT','RMP','FC','AS','GH','GS','LAG','RF'];
+const SIM_ST = 12.5;          // Starter list price $/mo
+const SIM_PR = 18;            // Pro list price $/mo
+const SIM_W = [0.35,0.35,0.15,0.08,0.04,0.03]; // Free→Paid timing: 70% in months 1–2, tail to m6
+const SIM_IDS = ['NP','PC','NC','CC','PSH','FC','TRF','RMP','S1','G4R','APN','GH','PFX','GS','LAG','RF','PRK','WBC','D0','DM'];
 const SIM_ANCHOR = {NP:168, PC:1.6, NC:0.7};
 const SIM_PRESETS = {
-  base: Object.assign({}, SIM_ANCHOR, {APN:22.9, SLW:50, D0:3, DM:0.25, PRK:35, CC:10, AST:14, LIFT:120, RMP:4, FC:5, AS:55, GH:10, GS:0.045, LAG:1, RF:85}),
-  pess: Object.assign({}, SIM_ANCHOR, {APN:20.0, SLW:70, D0:6, DM:0.50, PRK:20, CC:5,  AST:13, LIFT:60,  RMP:6, FC:8, AS:45, GH:7,  GS:0.020, LAG:2, RF:95}),
-  opt:  Object.assign({}, SIM_ANCHOR, {APN:25.0, SLW:35, D0:2, DM:0.15, PRK:50, CC:15, AST:15, LIFT:200, RMP:3, FC:4, AS:65, GH:14, GS:0.090, LAG:1, RF:80})
+  base: Object.assign({}, SIM_ANCHOR, {CC:6,  PSH:46, FC:5, TRF:30, RMP:4, S1:4.0, G4R:11, APN:22.9, GH:8,  PFX:10, GS:0.045, LAG:1, RF:85, PRK:35, WBC:5, D0:3, DM:0.25}),
+  pess: Object.assign({}, SIM_ANCHOR, {CC:3,  PSH:35, FC:8, TRF:10, RMP:6, S1:3.0, G4R:9,  APN:20.0, GH:5,  PFX:5,  GS:0.020, LAG:2, RF:95, PRK:20, WBC:2, D0:6, DM:0.50}),
+  opt:  Object.assign({}, SIM_ANCHOR, {CC:10, PSH:50, FC:4, TRF:50, RMP:3, S1:5.0, G4R:13, APN:25.0, GH:12, PFX:15, GS:0.090, LAG:1, RF:80, PRK:50, WBC:8, D0:2, DM:0.15})
 };
 const SIM_FMT = {
   NP:v=>simN(v), PC:v=>v.toFixed(1)+'%', NC:v=>v.toFixed(1)+'%',
+  CC:v=>v+'%', PSH:v=>v+'% (ARPU $'+((1-v/100)*SIM_ST+v/100*SIM_PR).toFixed(1)+')', FC:v=>v+'%',
+  TRF:v=>'+'+v+'%', RMP:v=>v+' mo',
+  S1:v=>v.toFixed(1)+'% ('+(v/SIM_G1R).toFixed(1)+'× today)',
+  G4R:v=>v.toFixed(1)+'% (today '+SIM_G4R0+'%)',
   APN:v=>'$'+v.toFixed(1)+' (+'+Math.round((v/SIM_A0-1)*100)+'%)',
-  SLW:v=>v+'% ('+Math.round(SIM_SS*v)+'% of G4s)', D0:v=>v+'%', DM:v=>v+'%',
-  PRK:v=>v+'%',
-  CC:v=>v+'%', AST:v=>'$'+v.toFixed(1),
-  LIFT:v=>'+'+v+'%', RMP:v=>v+' mo', FC:v=>v+'%',
-  AS:v=>v+'%', GH:v=>simN(v), GS:v=>v.toFixed(3)+'%', LAG:v=>v+' mo', RF:v=>v+'%'
+  GH:v=>simN(v), PFX:v=>v+'%', GS:v=>v.toFixed(3)+'%', LAG:v=>v+' mo', RF:v=>v+'%',
+  PRK:v=>v+'%', WBC:v=>v+'%',
+  D0:v=>v+'%', DM:v=>v+'%'
 };
 function simN(v){return Math.round(v).toLocaleString('en-US')}
 function simC(v){const a=Math.abs(v);let s=a>=1e6?(a/1e6).toFixed(2)+'M':a>=1e3?(a/1e3).toFixed(1)+'k':Math.round(a).toString();return (v<0?'−$':'+$')+s}
@@ -1006,49 +1146,75 @@ function simGetP(){const p={};SIM_IDS.forEach(function(id){p[id]=parseFloat(docu
 
 function simSimulate(p){
   const M=12;
-  const pc=p.PC/100, nc=p.NC/100, apn=p.APN, ast=p.AST,
-        slw=p.SLW/100, d0=p.D0/100, dm=p.DM/100, prk=p.PRK/100,
-        cc=p.CC/100, liftMax=p.LIFT/100, rmp=p.RMP,
-        fc=p.FC/100, as_=p.AS/100, gs=p.GS/100, rf=p.RF/100;
+  const pc=p.PC/100, nc=p.NC/100, apn=p.APN,
+        d0=p.D0/100, dm=p.DM/100, prk=p.PRK/100,
+        cc=p.CC/100, psh=p.PSH/100,
+        trf=p.TRF/100, rmp=p.RMP, s1=p.S1/100, g4r=p.G4R/100,
+        fc=p.FC/100, pfx=p.PFX/100, gs=p.GS/100, rf=p.RF/100, wbc=p.WBC/100;
+  const cAst = (1-psh)*SIM_ST + psh*SIM_PR;   // ARPU of Free→Paid converts (Starter/Pro mix)
   const MRR0 = SIM_B0*SIM_ABL;
-  // Baseline: no Free plan, current tiers, new G4s at current $18.3 ARPU
+  // §1 Baseline
   let hB=SIM_B0, mB=MRR0; const mrrB=[];
   for(let t=1;t<=M;t++){ mB = mB*(1-nc) + p.NP*SIM_A0; hB = hB*(1-pc) + p.NP; mrrB.push(mB); }
   // Free-plan scenario
   let paid=SIM_B0, free=0, mF=MRR0;
-  const mrrF=[], freeArr=[], refArr=[], exposure=[], inflowArr=[];
-  let refTotal=0, convTotal=0;
+  const mrrF=[], freeArr=[], refArr=[], expArr=[];
+  const src = {fun:[], dwn:[], ref:[]};   // fast m1–2 cohorts: funnel free inflow, downgrades, referral-free
+  const parkArr = [];                     // churn-to-Free cohorts on the slow m6–12 curve
+  const st = {up:0, mkt:0, ref:0, wbk:0, dwn:0};
+  const streams = {up:[], mkt:[], ref:[], wbk:[], dwn:[]};
+  const tot = {refS:0, park:0, dwnA:0, g1:0, upA:0, refA:0, convAll:0};
+  let lastG1=0, lastPaidDirect=0, lastFreeFun=0;
   for(let t=1;t<=M;t++){
-    const hostsPrev = paid + free;
-    // Gain 3 — referral: all hosts (Free hosts send guidebooks too) expose guests
-    exposure.push(hostsPrev*as_*p.GH);
-    const refSign = (t-p.LAG>=1) ? exposure[t-1-p.LAG]*gs : 0;
-    refTotal += refSign;
+    // §4 referral exposures: banner only on Free guidebooks; paid hosts refer weakly
+    expArr.push((free + paid*pfx) * p.GH);
+    const refSign = (t-p.LAG>=1) ? expArr[t-1-p.LAG]*gs : 0;
+    tot.refS += refSign;
     const refPaid = refSign*(1-rf), refFree = refSign*rf;
-    // Migration: lower-Starter G4s land on Free; rest pay at re-tier ARPU
-    const freeG4 = p.NP*SIM_SS*slw;
-    const paidG4 = p.NP - freeG4;
-    const newPaidMRR = paidG4*apn;
-    // Base losses: Starter-base downgrades (one-time + trickle) at Starter ARPU
+    // §3 new funnel: traffic (ramped) × visitor→G1 × G1→Paid split
+    const visitors = SIM_V0*(1+trf*Math.min(1,t/rmp));
+    const g1 = visitors*s1;
+    const paidDirect = g1*g4r;             // direct G1→Paid at re-tier ARPU
+    const freeFun = g1 - paidDirect;       // everyone else lands on Free (today they vanish)
+    tot.g1 += g1; lastG1=g1; lastPaidDirect=paidDirect; lastFreeFun=freeFun;
+    // §5 base downgrades
     const downg = paid*SIM_SS*dm + (t===1 ? SIM_B0*SIM_SS*d0 : 0);
-    // Churn-to-Free: share of monthly churners park on Free (no MRR delta — they churned in both scenarios)
+    tot.dwnA += downg;
+    // §4 secondary funnel: churners parking on Free
     const churnPark = paid*pc*prk;
-    // Gain 2 — marketing free-plan lift, ramping to max over rmp months
-    const lift_t = p.NP*liftMax*Math.min(1, t/rmp);
-    const inflow = freeG4 + lift_t + churnPark + downg + refFree;   // this month's Free cohort
-    inflowArr.push(inflow);
-    // Gain 1 — Free→Paid upgrade pressure: cohort converts on the m1–2-peaked curve, survival-adjusted
-    let conv = 0;
-    for(let a=1;a<=6;a++){ if(t-a>=1) conv += SIM_W[a-1]*cc*inflowArr[t-a-1]*Math.pow(1-fc,a); }
-    if(conv > free + inflow) conv = free + inflow;
-    convTotal += conv;
-    mF = mF*(1-nc) + newPaidMRR - downg*ast + conv*ast + refPaid*ast;
-    paid = paid*(1-pc) + paidG4 - downg + conv + refPaid;
+    tot.park += churnPark; parkArr.push(churnPark);
+    src.fun.push(freeFun); src.dwn.push(downg); src.ref.push(refFree);
+    const inflow = freeFun + churnPark + downg + refFree;
+    // §2 engine: fast cohorts on the m1–2-peaked curve, credited by source
+    const cs = {fun:0, dwn:0, ref:0};
+    for(let a=1;a<=6;a++){
+      if(t-a>=1){
+        const w = SIM_W[a-1]*cc*Math.pow(1-fc,a);
+        cs.fun+=w*src.fun[t-a-1]; cs.dwn+=w*src.dwn[t-a-1]; cs.ref+=w*src.ref[t-a-1];
+      }
+    }
+    // §4 winback: parked churners reconvert slowly over months 6–12
+    let wb = 0;
+    for(let a=6;a<=12;a++){ if(t-a>=1) wb += (wbc/7)*parkArr[t-a-1]*Math.pow(1-fc,a); }
+    let conv = cs.fun+cs.dwn+cs.ref+wb;
+    if(conv > free + inflow){ const k=(free+inflow)/conv; conv=free+inflow; for(const s in cs) cs[s]*=k; wb*=k; }
+    tot.convAll += conv;
+    tot.upA += cs.fun+cs.dwn; tot.refA += refPaid + cs.ref + wb;
+    // Section MRR streams (each decays at net MRR churn; they sum exactly to the total delta)
+    st.up  = st.up *(1-nc) + (cs.fun+cs.dwn)*cAst;                  // §2 upgrades (funnel + downgraded pools)
+    st.mkt = st.mkt*(1-nc) + (paidDirect*apn - p.NP*SIM_A0);        // §3 direct-paid delta vs baseline
+    st.ref = st.ref*(1-nc) + refPaid*cAst + cs.ref*cAst;            // §4 referrals
+    st.wbk = st.wbk*(1-nc) + wb*cAst;                               // §4 winback
+    st.dwn = st.dwn*(1-nc) - downg*SIM_ST;                          // §5 base downgrades
+    streams.up.push(st.up); streams.mkt.push(st.mkt); streams.ref.push(st.ref); streams.wbk.push(st.wbk); streams.dwn.push(st.dwn);
+    mF = mF*(1-nc) + paidDirect*apn - downg*SIM_ST + conv*cAst + refPaid*cAst;
+    paid = paid*(1-pc) + paidDirect - downg + conv + refPaid;
     free = free*(1-fc) + inflow - conv;
     if(paid<0)paid=0; if(free<0)free=0; if(mF<0)mF=0;
     mrrF.push(mF); freeArr.push(free); refArr.push(refSign);
   }
-  return {mrrB:mrrB, mrrF:mrrF, freeArr:freeArr, refArr:refArr, refTotal:refTotal, convTotal:convTotal};
+  return {mrrB:mrrB, mrrF:mrrF, freeArr:freeArr, refArr:refArr, hB:hB, streams:streams, tot:tot,
+          lastG1:lastG1, lastPaidDirect:lastPaidDirect, lastFreeFun:lastFreeFun, expArr:expArr};
 }
 
 let simCharts={}, simInited=false;
@@ -1064,11 +1230,23 @@ function simRender(){
   document.getElementById('kBE').className = 'v '+(beM>0?'sim-pos':'sim-neg');
   document.getElementById('kPB').textContent = pbM>0?'Month '+pbM:'Not in 12 mo';
   document.getElementById('kPB').className = 'v '+(pbM>0?'sim-pos':'sim-neg');
-  document.getElementById('kRef').textContent = simN(r.refTotal); document.getElementById('kRef').className='v';
-  document.getElementById('kConv').textContent = simN(r.convTotal); document.getElementById('kConv').className='v';
+  document.getElementById('kRef').textContent = simN(r.tot.refS); document.getElementById('kRef').className='v';
+  document.getElementById('kConv').textContent = simN(r.tot.convAll); document.getElementById('kConv').className='v';
   document.getElementById('kFree').textContent = simN(r.freeArr[11]); document.getElementById('kFree').className='v';
+  // Per-section stats: accounts + MRR
+  simTxt('s1A', simN(r.hB));               simTxt('s1M', '$'+simN(r.mrrB[11]));
+  simTxt('s2A', simN(r.tot.upA));          simTxt('s2M', simC(r.streams.up[11])+'/mo');
+  simTxt('s3G', simN(r.lastG1));           simTxt('s3P', simN(r.lastPaidDirect));
+  simTxt('s3F', simN(r.lastFreeFun));      simTxt('s3M', simC(r.streams.mkt[11])+'/mo');
+  simTxt('s4E', simN(r.expArr[0])+' → '+simN(r.expArr[11]));         simTxt('s4S', simN(r.tot.refS));         simTxt('s4P', simN(r.tot.park));
+  simTxt('s4A', simN(r.tot.refA));         simTxt('s4M', simC(r.streams.ref[11]+r.streams.wbk[11])+'/mo');
+  simTxt('s5A', simN(r.tot.dwnA));         simTxt('s5M', simC(r.streams.dwn[11])+'/mo');
 
   const labels=Array.from({length:12},function(_,i){return 'M'+(i+1)});
+  simStream('cSec2','MRR impact ($/mo): Free→Paid upgrades (funnel + downgraded pools)',r.streams.up);
+  simStream('cSec3','MRR impact ($/mo): direct paid G4s vs baseline (volume × rate bet)',r.streams.mkt);
+  simStack('cSec4','MRR impact ($/mo): referrals + winback',r.streams.ref,r.streams.wbk);
+  simStream('cSec5','MRR impact ($/mo): base downgrades to Free',r.streams.dwn);
   simLine('cMRR',labels,[
     {label:'MRR — with Free plan + re-tier',data:r.mrrF,borderColor:'#2dd4bf',backgroundColor:'transparent',tension:.3,pointRadius:2},
     {label:'MRR — baseline (no Free, current tiers)',data:r.mrrB,borderColor:'#64748b',borderDash:[6,4],backgroundColor:'transparent',tension:.3,pointRadius:2}
@@ -1076,6 +1254,7 @@ function simRender(){
   simBar('cDelta',labels,[{label:'Monthly MRR delta ($)',data:delta,backgroundColor:delta.map(function(d){return d>=0?'#2dd4bf':'#f87171'})}],'Monthly MRR delta (Free scenario − baseline)');
   simMixed('cBase',labels,r.freeArr,r.refArr);
 }
+function simTxt(id,txt){document.getElementById(id).textContent=txt}
 function simSetK(id,val,txt){const e=document.getElementById(id);e.textContent=txt;e.className='v '+(val>=0?'sim-pos':'sim-neg')}
 
 function simOpts(t){return {responsive:true,maintainAspectRatio:false,
@@ -1084,11 +1263,26 @@ function simOpts(t){return {responsive:true,maintainAspectRatio:false,
           x:{ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{display:false}}}};}
 function simLine(id,labels,ds,title){if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}simCharts[id]=new Chart(document.getElementById(id),{type:'line',data:{labels:labels,datasets:ds},options:simOpts(title)})}
 function simBar(id,labels,ds,title){if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}simCharts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels:labels,datasets:ds},options:simOpts(title)})}
+function simStream(id,title,data){
+  const labels=Array.from({length:12},function(_,i){return 'M'+(i+1)});
+  const ds=[{label:'$/mo vs baseline',data:data,backgroundColor:data.map(function(d){return d>=0?'#2dd4bf':'#f87171'})}];
+  if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].options.plugins.title.text=title;simCharts[id].update();return}
+  const o=simOpts(title); o.plugins.legend.display=false;
+  simCharts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels:labels,datasets:ds},options:o});
+}
+function simStack(id,title,refData,wbkData){
+  const labels=Array.from({length:12},function(_,i){return 'M'+(i+1)});
+  const ds=[{label:'Referrals',data:refData,backgroundColor:'#a78bfa'},
+            {label:'Winback (churn→Free)',data:wbkData,backgroundColor:'#fbbf24'}];
+  if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}
+  const o=simOpts(title); o.scales.x.stacked=true; o.scales.y.stacked=true;
+  simCharts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels:labels,datasets:ds},options:o});
+}
 function simMixed(id,labels,freeArr,refArr){
   const ds=[{type:'line',label:'Free base (hosts)',data:freeArr,borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,0.10)',fill:true,tension:.3,pointRadius:2,yAxisID:'y'},
             {type:'bar',label:'Referral signups / month',data:refArr,backgroundColor:'#a78bfa',yAxisID:'y1'}];
   if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}
-  const o=simOpts('Free base growth & referral motion (note the lags)');
+  const o=simOpts('Free base growth & referral motion');
   o.scales={y:{position:'left',ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{color:'rgba(255,255,255,0.05)'}},
             y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'}},
             x:{ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{display:false}}};
