@@ -6,6 +6,7 @@
 <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
 <title>Touch Stay — Free Tier Price Plan Redesign</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&amp;family=JetBrains+Mono:wght@400;500&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
 <style>
 :root {
   --bg: #0f1117;
@@ -163,7 +164,33 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 .coming-soon h3 { font-size: 16px; font-weight: 600; color: var(--text); margin-bottom: 8px; }
 .coming-soon p { font-size: 12px; color: var(--text3); max-width: 360px; margin: 0 auto; }
 
-        .nu { color: #6b7280; font-size: 12px; }</style>
+        .nu { color: #6b7280; font-size: 12px; }
+
+/* ── SIMULATION TAB ── */
+.sim-layout { display: grid; grid-template-columns: 330px 1fr; gap: 14px; }
+@media(max-width: 900px){ .sim-layout { grid-template-columns: 1fr; } }
+.sim-presets { display: flex; gap: 6px; margin-bottom: 14px; }
+.sim-presets button { flex: 1; font-size: 11px; font-weight: 500; font-family: 'JetBrains Mono', monospace; padding: 6px 4px; cursor: pointer; border: 1px solid var(--border2); background: var(--s2); color: var(--text3); border-radius: var(--r-sm); transition: all .15s; }
+.sim-presets button:hover { color: var(--text); border-color: var(--teal-border); }
+.sim-presets button.active { background: var(--teal-bg); border-color: var(--teal-border); color: var(--teal); }
+.sim-group { margin-bottom: 14px; }
+.sim-group h4 { font-size: 10px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text3); margin-bottom: 9px; display: flex; align-items: center; gap: 7px; }
+.sim-dot { width: 7px; height: 7px; border-radius: 50%; display: inline-block; flex-shrink: 0; }
+.sim-slider { margin-bottom: 9px; }
+.sim-slider label { display: flex; justify-content: space-between; font-size: 12px; color: var(--text2); margin-bottom: 2px; gap: 8px; }
+.sim-slider label b { font-family: 'JetBrains Mono', monospace; font-weight: 500; color: var(--text); font-size: 11.5px; white-space: nowrap; }
+.sim-slider input[type=range] { width: 100%; accent-color: var(--teal); height: 16px; }
+.sim-anchors { font-size: 11px; color: var(--text2); background: var(--blue-bg); border: 1px solid var(--blue-border); border-radius: var(--r-sm); padding: 9px 11px; margin-bottom: 13px; line-height: 1.6; }
+.sim-anchors b { color: var(--text); font-family: 'JetBrains Mono', monospace; font-weight: 500; }
+.sim-kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 10px; margin-bottom: 14px; }
+.sim-kpi { background: var(--s1); border: 1px solid var(--border); border-radius: var(--r); padding: 11px 13px; }
+.sim-kpi .v { font-size: 17px; font-weight: 600; font-family: 'JetBrains Mono', monospace; }
+.sim-kpi .l { font-size: 10px; color: var(--text3); margin-top: 2px; line-height: 1.4; }
+.sim-pos { color: var(--teal); }
+.sim-neg { color: var(--red); }
+.sim-chartbox { height: 250px; margin-bottom: 0; }
+.sim-chart-card { background: var(--s1); border: 1px solid var(--border); border-radius: var(--r); padding: 14px; margin-bottom: 14px; }
+</style>
 </head>
 <body>
 <div class="page">
@@ -177,6 +204,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="tabs">
 <button class="tab-btn active" onclick="showTab('offering',this)">Offering <span class="badge">ready</span></button>
 <button class="tab-btn" onclick="showTab('experience',this)">Experience <span class="badge">next</span></button>
+<button class="tab-btn" onclick="showTab('simulation',this)">Free Plan Simulation <span class="badge">ready</span></button>
 <button class="tab-btn" onclick="showTab('acquisition',this)">Acquisition &amp; Marketing <span class="badge">next</span></button>
 </div>
 <!-- ══════════ TAB: OFFERING ══════════ -->
@@ -845,6 +873,83 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 
 </div>
 <!-- TAB:experience END -->
+<!-- TAB:simulation START -->
+<div class="tab-panel" id="tab-simulation">
+
+  <div class="sec">
+    <div class="sec-title">Free plan landgrab — 12-month MRR simulation</div>
+    <div class="sim-anchors">
+      <b>Fixed anchors — May 2026 KPI actuals:</b> Paying hosts <b>9,876</b> · MRR <b>$242.9k</b> · Blended ARPU <b>$24.6</b> · Tier mix: Starter = <b>54%</b> of new G4s @ <b>$14</b> ARPU (Free / Starter / Pro-Recommended structure).
+      Losses: cannibalization (Starter G4s parking on Free + downgrades). Gains: <span style="color:var(--blue)">① marketing-hook signup lift</span> · <span style="color:var(--purple)">② guest→referral→host motion with lag</span> · <span style="color:var(--teal)">③ Free→Paid cohort conversion after X months</span>. New-paid ARPU uplift from the re-tier applies to the Free scenario only — set it to 0 to isolate the pure free-plan effect.
+    </div>
+
+    <div class="sim-layout">
+      <!-- CONTROLS -->
+      <div class="card">
+        <div class="sim-presets">
+          <button id="pbtn-pess" onclick="simPreset('pess')">Pessimistic</button>
+          <button id="pbtn-base" class="active" onclick="simPreset('base')">Base</button>
+          <button id="pbtn-opt" onclick="simPreset('opt')">Optimistic</button>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--text3)"></span>Baseline funnel &amp; churn</h4>
+          <div class="sim-slider"><label>New paid (G4) / month <b id="vNP"></b></label><input type="range" id="NP" min="100" max="300" step="1"></div>
+          <div class="sim-slider"><label>Logo churn / month <b id="vPC"></b></label><input type="range" id="PC" min="0" max="5" step="0.1"></div>
+          <div class="sim-slider"><label>Net MRR churn / month <b id="vNC"></b></label><input type="range" id="NC" min="0" max="3" step="0.1"></div>
+          <div class="sim-slider"><label>New-paid ARPU uplift (re-tier mix) <b id="vUPL"></b></label><input type="range" id="UPL" min="0" max="40" step="1"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--red)"></span>Losses — cannibalization</h4>
+          <div class="sim-slider"><label>Starter G4s parking on Free instead <b id="vK1"></b></label><input type="range" id="K1" min="0" max="90" step="1"></div>
+          <div class="sim-slider"><label>One-time downgrade of Starter base (m1) <b id="vD0"></b></label><input type="range" id="D0" min="0" max="25" step="0.5"></div>
+          <div class="sim-slider"><label>Ongoing Starter downgrade / month <b id="vDM"></b></label><input type="range" id="DM" min="0" max="3" step="0.05"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--blue)"></span>Gain 1 — marketing hook</h4>
+          <div class="sim-slider"><label>Top-of-funnel signup lift (lands on Free) <b id="vLIFT"></b></label><input type="range" id="LIFT" min="0" max="300" step="5"></div>
+          <div class="sim-slider"><label>Free base inactivity churn / month <b id="vFC"></b></label><input type="range" id="FC" min="0" max="15" step="0.5"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--purple)"></span>Gain 2 — guest→referral→host</h4>
+          <div class="sim-slider"><label>Hosts actively sending guidebooks <b id="vAS"></b></label><input type="range" id="AS" min="0" max="100" step="5"></div>
+          <div class="sim-slider"><label>Guests reached / active host / month <b id="vGH"></b></label><input type="range" id="GH" min="0" max="60" step="1"></div>
+          <div class="sim-slider"><label>Guest → host-signup rate <b id="vGS"></b></label><input type="range" id="GS" min="0" max="0.2" step="0.005"></div>
+          <div class="sim-slider"><label>Lag: exposure → signup (months) <b id="vLAG"></b></label><input type="range" id="LAG" min="0" max="6" step="1"></div>
+          <div class="sim-slider"><label>Referral signups landing on Free <b id="vRF"></b></label><input type="range" id="RF" min="0" max="100" step="5"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--teal)"></span>Gain 3 — Free→Paid after X months</h4>
+          <div class="sim-slider"><label>Cohort conversion to Starter <b id="vCC"></b></label><input type="range" id="CC" min="0" max="20" step="0.5"></div>
+          <div class="sim-slider"><label>X: months to convert <b id="vCX"></b></label><input type="range" id="CX" min="1" max="8" step="1"></div>
+          <div class="sim-slider"><label>+ background trickle upgrade / month <b id="vUP"></b></label><input type="range" id="UP" min="0" max="4" step="0.1"></div>
+        </div>
+      </div>
+
+      <!-- OUTPUTS -->
+      <div>
+        <div class="sim-kpis">
+          <div class="sim-kpi"><div class="v" id="kMrr"></div><div class="l">MRR delta @ month 12 (vs baseline)</div></div>
+          <div class="sim-kpi"><div class="v" id="kCum"></div><div class="l">Cumulative revenue delta, 12 mo</div></div>
+          <div class="sim-kpi"><div class="v" id="kBE"></div><div class="l">Monthly delta turns positive</div></div>
+          <div class="sim-kpi"><div class="v" id="kPB"></div><div class="l">Cumulative payback month</div></div>
+          <div class="sim-kpi"><div class="v" id="kRef"></div><div class="l">Referral-sourced hosts by m12</div></div>
+          <div class="sim-kpi"><div class="v" id="kConv"></div><div class="l">Free→Paid converts by m12</div></div>
+          <div class="sim-kpi"><div class="v" id="kFree"></div><div class="l">Free base @ month 12</div></div>
+        </div>
+
+        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cMRR"></canvas></div></div>
+        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cDelta"></canvas></div></div>
+        <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cBase"></canvas></div></div>
+
+        <div class="callout teal">
+          <strong>How to read it.</strong> Two opposing per-cohort forces decide the verdict: parking costs ~NP × 54% × parking% × $14 per monthly cohort, while the re-tier ARPU uplift adds ~NP × $24.6 × uplift% — at the anchors, a 25% uplift (+$1.0k/cohort) outweighs even 50% Starter parking (−$0.6k/cohort), so the package can be net positive before the flywheels kick in. Gain 3 converts each Free cohort to Starter after X months (survival-adjusted for Free-base churn), so its revenue arrives delayed but compounds with the signup lift. The three assumptions worth validating with real data: <strong>parking %</strong> (A/B the signup page), <strong>cohort conversion %</strong> (freemium benchmark 2–10%), and <strong>guest→signup rate</strong> (instrument guidebook-footer attribution — current hosts already generate ~120k guest exposures/month).
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<!-- TAB:simulation END -->
 <!-- TAB:acquisition START -->
 <div class="tab-panel" id="tab-acquisition">
 <div class="coming-soon">
@@ -860,7 +965,132 @@ function showTab(id, btn) {
   document.querySelectorAll('.tab-btn').forEach(function(b) { b.classList.remove('active'); });
   document.getElementById('tab-' + id).classList.add('active');
   btn.classList.add('active');
+  if (id === 'simulation') { initSim(); }
 }
+
+/* ══════════ FREE PLAN SIMULATION ══════════ */
+// Fixed anchors — May 2026 KPI actuals
+const SIM_B0 = 9876, SIM_ABL = 24.6, SIM_SS = 0.54, SIM_AST = 14;
+const SIM_IDS = ['NP','PC','NC','UPL','K1','D0','DM','LIFT','FC','AS','GH','GS','LAG','RF','CC','CX','UP'];
+const SIM_ANCHOR = {NP:168, PC:1.6, NC:0.7};
+const SIM_PRESETS = {
+  base: Object.assign({}, SIM_ANCHOR, {UPL:25, K1:50, D0:4,  DM:0.30, LIFT:80,  FC:4, AS:60, GH:20, GS:0.030, LAG:3, RF:85, CC:6,  CX:4, UP:1.0}),
+  pess: Object.assign({}, SIM_ANCHOR, {UPL:20, K1:75, D0:8,  DM:0.60, LIFT:40,  FC:7, AS:40, GH:12, GS:0.015, LAG:4, RF:95, CC:3,  CX:6, UP:0.5}),
+  opt:  Object.assign({}, SIM_ANCHOR, {UPL:30, K1:30, D0:2,  DM:0.15, LIFT:150, FC:3, AS:75, GH:30, GS:0.060, LAG:2, RF:80, CC:10, CX:3, UP:1.5})
+};
+const SIM_FMT = {
+  NP:v=>simN(v), PC:v=>v.toFixed(1)+'%', NC:v=>v.toFixed(1)+'%', UPL:v=>'+'+v+'%',
+  K1:v=>v+'%', D0:v=>v+'%', DM:v=>v+'%',
+  LIFT:v=>'+'+v+'%', FC:v=>v+'%', AS:v=>v+'%', GH:v=>simN(v), GS:v=>v.toFixed(3)+'%', LAG:v=>v+' mo', RF:v=>v+'%',
+  CC:v=>v+'%', CX:v=>v+' mo', UP:v=>v+'%'
+};
+function simN(v){return Math.round(v).toLocaleString('en-US')}
+function simC(v){const a=Math.abs(v);let s=a>=1e6?(a/1e6).toFixed(2)+'M':a>=1e3?(a/1e3).toFixed(1)+'k':Math.round(a).toString();return (v<0?'−$':'+$')+s}
+function simGetP(){const p={};SIM_IDS.forEach(function(id){p[id]=parseFloat(document.getElementById(id).value)});return p}
+
+function simSimulate(p){
+  const M=12;
+  const pc=p.PC/100, nc=p.NC/100, upl=p.UPL/100,
+        k1=p.K1/100, d0=p.D0/100, dm=p.DM/100, lift=p.LIFT/100,
+        fc=p.FC/100, as_=p.AS/100, gs=p.GS/100, rf=p.RF/100,
+        cc=p.CC/100, cx=p.CX, up=p.UP/100;
+  const MRR0 = SIM_B0*SIM_ABL;
+  // Baseline: no Free plan, current tier mix (no uplift)
+  let hB=SIM_B0, mB=MRR0; const mrrB=[];
+  for(let t=1;t<=M;t++){ mB = mB*(1-nc) + p.NP*SIM_ABL; hB = hB*(1-pc) + p.NP; mrrB.push(mB); }
+  // Free-plan scenario
+  let paid=SIM_B0, free=0, mF=MRR0;
+  const mrrF=[], freeArr=[], refArr=[], exposure=[], inflowArr=[];
+  let refTotal=0, convTotal=0;
+  for(let t=1;t<=M;t++){
+    const hostsPrev = paid + free;
+    exposure.push(hostsPrev*as_*p.GH);
+    const refSign = (t-p.LAG>=1) ? exposure[t-1-p.LAG]*gs : 0;
+    refTotal += refSign;
+    const refPaid = refSign*(1-rf), refFree = refSign*rf;
+    const parked = p.NP*SIM_SS*k1;                              // Starter G4s choosing Free (hosts)
+    const directPaid = p.NP - parked;
+    const newPaidMRR = p.NP*SIM_ABL*(1+upl) - parked*SIM_AST;   // uplifted new-paid MRR minus Starter-priced parking
+    const downg = paid*SIM_SS*dm + (t===1 ? SIM_B0*SIM_SS*d0 : 0); // Starter-base downgrades
+    const inflow = parked + p.NP*lift + downg + refFree;        // this month's Free cohort
+    inflowArr.push(inflow);
+    const cohortConv = (t-cx>=1) ? inflowArr[t-1-cx]*cc*Math.pow(1-fc,cx) : 0;  // Gain 3
+    const trickle = free*up;
+    let upgr = cohortConv + trickle;
+    if(upgr > free + inflow) upgr = free + inflow;
+    convTotal += upgr;
+    mF = mF*(1-nc) + newPaidMRR - downg*SIM_AST + upgr*SIM_AST + refPaid*SIM_AST;
+    paid = paid*(1-pc) + directPaid - downg + upgr + refPaid;
+    free = free*(1-fc) + inflow - upgr;
+    if(paid<0)paid=0; if(free<0)free=0; if(mF<0)mF=0;
+    mrrF.push(mF); freeArr.push(free); refArr.push(refSign);
+  }
+  return {mrrB:mrrB, mrrF:mrrF, freeArr:freeArr, refArr:refArr, refTotal:refTotal, convTotal:convTotal};
+}
+
+let simCharts={}, simInited=false;
+function simRender(){
+  SIM_IDS.forEach(function(id){document.getElementById('v'+id).textContent=SIM_FMT[id](parseFloat(document.getElementById(id).value))});
+  const p=simGetP(), r=simSimulate(p);
+  const delta=r.mrrF.map(function(v,i){return v-r.mrrB[i]});
+  let cum=0; const cumArr=delta.map(function(d){return cum+=d});
+  const m12=delta[11], cum12=cumArr[11];
+  const beM=delta.findIndex(function(d){return d>=0})+1, pbM=cumArr.findIndex(function(c){return c>=0})+1;
+  simSetK('kMrr',m12,simC(m12)+' MRR'); simSetK('kCum',cum12,simC(cum12));
+  document.getElementById('kBE').textContent = beM>0?'Month '+beM:'Not in 12 mo';
+  document.getElementById('kBE').className = 'v '+(beM>0?'sim-pos':'sim-neg');
+  document.getElementById('kPB').textContent = pbM>0?'Month '+pbM:'Not in 12 mo';
+  document.getElementById('kPB').className = 'v '+(pbM>0?'sim-pos':'sim-neg');
+  document.getElementById('kRef').textContent = simN(r.refTotal); document.getElementById('kRef').className='v';
+  document.getElementById('kConv').textContent = simN(r.convTotal); document.getElementById('kConv').className='v';
+  document.getElementById('kFree').textContent = simN(r.freeArr[11]); document.getElementById('kFree').className='v';
+
+  const labels=Array.from({length:12},function(_,i){return 'M'+(i+1)});
+  simLine('cMRR',labels,[
+    {label:'MRR — with Free plan + re-tier',data:r.mrrF,borderColor:'#2dd4bf',backgroundColor:'transparent',tension:.3,pointRadius:2},
+    {label:'MRR — baseline (no Free, current tiers)',data:r.mrrB,borderColor:'#64748b',borderDash:[6,4],backgroundColor:'transparent',tension:.3,pointRadius:2}
+  ],'MRR ($): baseline vs Free-plan scenario');
+  simBar('cDelta',labels,[{label:'Monthly MRR delta ($)',data:delta,backgroundColor:delta.map(function(d){return d>=0?'#2dd4bf':'#f87171'})}],'Monthly MRR delta (Free scenario − baseline)');
+  simMixed('cBase',labels,r.freeArr,r.refArr);
+}
+function simSetK(id,val,txt){const e=document.getElementById(id);e.textContent=txt;e.className='v '+(val>=0?'sim-pos':'sim-neg')}
+
+function simOpts(t){return {responsive:true,maintainAspectRatio:false,
+  plugins:{title:{display:true,text:t,font:{size:12,family:'Inter'},color:'#94a3b8'},legend:{labels:{boxWidth:12,font:{size:10,family:'Inter'},color:'#94a3b8'}}},
+  scales:{y:{ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{color:'rgba(255,255,255,0.05)'}},
+          x:{ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{display:false}}}};}
+function simLine(id,labels,ds,title){if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}simCharts[id]=new Chart(document.getElementById(id),{type:'line',data:{labels:labels,datasets:ds},options:simOpts(title)})}
+function simBar(id,labels,ds,title){if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}simCharts[id]=new Chart(document.getElementById(id),{type:'bar',data:{labels:labels,datasets:ds},options:simOpts(title)})}
+function simMixed(id,labels,freeArr,refArr){
+  const ds=[{type:'line',label:'Free base (hosts)',data:freeArr,borderColor:'#fbbf24',backgroundColor:'rgba(251,191,36,0.10)',fill:true,tension:.3,pointRadius:2,yAxisID:'y'},
+            {type:'bar',label:'Referral signups / month',data:refArr,backgroundColor:'#a78bfa',yAxisID:'y1'}];
+  if(simCharts[id]){simCharts[id].data.labels=labels;simCharts[id].data.datasets=ds;simCharts[id].update();return}
+  const o=simOpts('Free base growth & referral motion (note the lags)');
+  o.scales={y:{position:'left',ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{color:'rgba(255,255,255,0.05)'}},
+            y1:{position:'right',grid:{drawOnChartArea:false},ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'}},
+            x:{ticks:{font:{size:9,family:"'JetBrains Mono',monospace"},color:'#64748b'},grid:{display:false}}};
+  simCharts[id]=new Chart(document.getElementById(id),{data:{labels:labels,datasets:ds},options:o});
+}
+
+function simPreset(name){
+  const v=SIM_PRESETS[name];
+  SIM_IDS.forEach(function(id){document.getElementById(id).value=v[id]});
+  ['pess','base','opt'].forEach(function(n){document.getElementById('pbtn-'+n).classList.toggle('active', n===name)});
+  if(simInited) simRender();
+}
+function initSim(){
+  if(simInited) return;
+  simInited=true;
+  SIM_IDS.forEach(function(id){
+    document.getElementById(id).addEventListener('input',function(){
+      ['pess','base','opt'].forEach(function(n){document.getElementById('pbtn-'+n).classList.remove('active')});
+      simRender();
+    });
+  });
+  simRender();
+}
+// Preload base preset values so sliders show correct positions before first render
+(function(){const v=SIM_PRESETS.base;SIM_IDS.forEach(function(id){document.getElementById(id).value=v[id]});})();
 </script>
 </body>
 </html>
