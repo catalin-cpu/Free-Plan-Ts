@@ -879,8 +879,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
   <div class="sec">
     <div class="sec-title">Free plan landgrab — 12-month MRR simulation</div>
     <div class="sim-anchors">
-      <b>Fixed anchors — May 2026 KPI actuals:</b> Paying hosts <b>9,876</b> · MRR <b>$242.9k</b> · Blended ARPU <b>$24.6</b> · Tier mix: Starter = <b>54%</b> of new G4s @ <b>$14</b> ARPU (Free / Starter / Pro-Recommended structure).
-      Losses: cannibalization (Starter G4s parking on Free + downgrades). Gains: <span style="color:var(--blue)">① marketing-hook signup lift</span> · <span style="color:var(--purple)">② guest→referral→host motion with lag</span> · <span style="color:var(--teal)">③ Free→Paid cohort conversion after X months</span>. New-paid ARPU uplift from the re-tier applies to the Free scenario only — set it to 0 to isolate the pure free-plan effect.
+      <b>Fixed anchors — May 2026 KPI actuals:</b> Paying hosts <b>9,876</b> · MRR <b>$242.9k</b> · <b>168</b> new G4s/mo at <b>$18.3</b> new-G4 ARPU (= MRR-new ÷ G4s, KPI report) · G4 mix <b>Starter 54% / Growth 36% / Pro 10%</b> · logo churn <b>1.6%</b>/mo · net MRR churn <b>0.7%</b>/mo (baseline reproduces actual +0.57%/mo MRR growth).<br>
+      <b>Migration map (Free/Starter/Pro):</b> upper Growth + Pro → Pro · lower Growth + upper Starter → Starter · <span style="color:var(--red)">lower Starter → Free</span>. <b>Churn-to-Free:</b> a share of monthly churners (~158 hosts) park on Free instead of leaving — no MRR loss vs baseline, pure winback + referral fuel.
+      <b>Breakeven check:</b> at 27% of G4s migrating to Free, paid new-G4 ARPU must reach <b>$25.1 (+37%)</b> to fully offset the lost cohort — the +20–30% re-tier uplift alone does not close the gap; upgrades, marketing lift and referrals must cover the rest.
     </div>
 
     <div class="sim-layout">
@@ -892,36 +893,40 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
           <button id="pbtn-opt" onclick="simPreset('opt')">Optimistic</button>
         </div>
 
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--text3)"></span>Baseline funnel &amp; churn</h4>
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--text3)"></span>Baseline &amp; re-tier pricing</h4>
           <div class="sim-slider"><label>New paid (G4) / month <b id="vNP"></b></label><input type="range" id="NP" min="100" max="300" step="1"></div>
           <div class="sim-slider"><label>Logo churn / month <b id="vPC"></b></label><input type="range" id="PC" min="0" max="5" step="0.1"></div>
           <div class="sim-slider"><label>Net MRR churn / month <b id="vNC"></b></label><input type="range" id="NC" min="0" max="3" step="0.1"></div>
-          <div class="sim-slider"><label>New-paid ARPU uplift (re-tier mix) <b id="vUPL"></b></label><input type="range" id="UPL" min="0" max="40" step="1"></div>
+          <div class="sim-slider"><label>Paid new-G4 ARPU after re-tier (now $18.3) <b id="vAPN"></b></label><input type="range" id="APN" min="15" max="30" step="0.1"></div>
         </div>
 
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--red)"></span>Losses — cannibalization</h4>
-          <div class="sim-slider"><label>Starter G4s parking on Free instead <b id="vK1"></b></label><input type="range" id="K1" min="0" max="90" step="1"></div>
-          <div class="sim-slider"><label>One-time downgrade of Starter base (m1) <b id="vD0"></b></label><input type="range" id="D0" min="0" max="25" step="0.5"></div>
-          <div class="sim-slider"><label>Ongoing Starter downgrade / month <b id="vDM"></b></label><input type="range" id="DM" min="0" max="3" step="0.05"></div>
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--red)"></span>Migration &amp; losses</h4>
+          <div class="sim-slider"><label>Lower-Starter G4s migrating to Free <b id="vSLW"></b></label><input type="range" id="SLW" min="0" max="100" step="5"></div>
+          <div class="sim-slider"><label>One-time downgrade of Starter base (m1) <b id="vD0"></b></label><input type="range" id="D0" min="0" max="15" step="0.5"></div>
+          <div class="sim-slider"><label>Ongoing Starter downgrade / month <b id="vDM"></b></label><input type="range" id="DM" min="0" max="2" step="0.05"></div>
         </div>
 
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--blue)"></span>Gain 1 — marketing hook</h4>
-          <div class="sim-slider"><label>Top-of-funnel signup lift (lands on Free) <b id="vLIFT"></b></label><input type="range" id="LIFT" min="0" max="300" step="5"></div>
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--amber)"></span>Churn-to-Free (winback pool)</h4>
+          <div class="sim-slider"><label>Churners parking on Free vs leaving <b id="vPRK"></b></label><input type="range" id="PRK" min="0" max="80" step="5"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--teal)"></span>Gain 1 — Free→Paid upgrade pressure</h4>
+          <div class="sim-slider"><label>Cohort conversion (70% lands m1–2) <b id="vCC"></b></label><input type="range" id="CC" min="0" max="25" step="0.5"></div>
+          <div class="sim-slider"><label>Convert ARPU (Starter tier) <b id="vAST"></b></label><input type="range" id="AST" min="10" max="20" step="0.5"></div>
+        </div>
+
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--blue)"></span>Gain 2 — marketing free-plan lift</h4>
+          <div class="sim-slider"><label>Max signup lift (lands on Free) <b id="vLIFT"></b></label><input type="range" id="LIFT" min="0" max="300" step="5"></div>
+          <div class="sim-slider"><label>Ramp to max (months) <b id="vRMP"></b></label><input type="range" id="RMP" min="1" max="8" step="1"></div>
           <div class="sim-slider"><label>Free base inactivity churn / month <b id="vFC"></b></label><input type="range" id="FC" min="0" max="15" step="0.5"></div>
         </div>
 
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--purple)"></span>Gain 2 — guest→referral→host</h4>
+        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--purple)"></span>Gain 3 — referral accumulation</h4>
           <div class="sim-slider"><label>Hosts actively sending guidebooks <b id="vAS"></b></label><input type="range" id="AS" min="0" max="100" step="5"></div>
-          <div class="sim-slider"><label>Guests reached / active host / month <b id="vGH"></b></label><input type="range" id="GH" min="0" max="60" step="1"></div>
-          <div class="sim-slider"><label>Guest → host-signup rate <b id="vGS"></b></label><input type="range" id="GS" min="0" max="0.2" step="0.005"></div>
-          <div class="sim-slider"><label>Lag: exposure → signup (months) <b id="vLAG"></b></label><input type="range" id="LAG" min="0" max="6" step="1"></div>
+          <div class="sim-slider"><label>Guest opens / active host / month <b id="vGH"></b></label><input type="range" id="GH" min="0" max="40" step="1"></div>
+          <div class="sim-slider"><label>Exposure → host-signup rate <b id="vGS"></b></label><input type="range" id="GS" min="0" max="0.2" step="0.005"></div>
+          <div class="sim-slider"><label>Lag: exposure → signup (months) <b id="vLAG"></b></label><input type="range" id="LAG" min="0" max="4" step="1"></div>
           <div class="sim-slider"><label>Referral signups landing on Free <b id="vRF"></b></label><input type="range" id="RF" min="0" max="100" step="5"></div>
-        </div>
-
-        <div class="sim-group"><h4><span class="sim-dot" style="background:var(--teal)"></span>Gain 3 — Free→Paid after X months</h4>
-          <div class="sim-slider"><label>Cohort conversion to Starter <b id="vCC"></b></label><input type="range" id="CC" min="0" max="20" step="0.5"></div>
-          <div class="sim-slider"><label>X: months to convert <b id="vCX"></b></label><input type="range" id="CX" min="1" max="8" step="1"></div>
-          <div class="sim-slider"><label>+ background trickle upgrade / month <b id="vUP"></b></label><input type="range" id="UP" min="0" max="4" step="0.1"></div>
         </div>
       </div>
 
@@ -942,7 +947,11 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
         <div class="sim-chart-card"><div class="sim-chartbox"><canvas id="cBase"></canvas></div></div>
 
         <div class="callout teal">
-          <strong>How to read it.</strong> Two opposing per-cohort forces decide the verdict: parking costs ~NP × 54% × parking% × $14 per monthly cohort, while the re-tier ARPU uplift adds ~NP × $24.6 × uplift% — at the anchors, a 25% uplift (+$1.0k/cohort) outweighs even 50% Starter parking (−$0.6k/cohort), so the package can be net positive before the flywheels kick in. Gain 3 converts each Free cohort to Starter after X months (survival-adjusted for Free-base churn), so its revenue arrives delayed but compounds with the signup lift. The three assumptions worth validating with real data: <strong>parking %</strong> (A/B the signup page), <strong>cohort conversion %</strong> (freemium benchmark 2–10%), and <strong>guest→signup rate</strong> (instrument guidebook-footer attribution — current hosts already generate ~120k guest exposures/month).
+          <strong>Assumption rationale &amp; benchmarks.</strong>
+          <strong>① Upgrade pressure (10% cohort conversion, 70% in months 1–2):</strong> the Free caps bind fast for any real host — 50 views/guidebook is consumed by ~4 bookings × 10–15 guest opens within the first 1–2 months of stays; 8 emails/mo ≈ 4 bookings × 2 scheduled messages; manual-only PMS sync breaks at the first busy turnover cycle. So pressure peaks at months 1–2, exactly the deliberate design of the Free tier. Magnitude: freemium free→paid medians run 2–5% (OpenView/ProfitWell), usage-capped products 8–15%, and this Free base skews high-intent (trial-expired fallbacks + active hosts), so 10% base / 5% pess / 15% opt.
+          <strong>② Marketing lift (+120% signups, 4-month ramp):</strong> removing the paywall/trial gate typically converts 2–3× more visitors to signups (visitor→signup moves from ~2% to 4–6%; TS today: 612 G1s on 29.3k web users = 2.1%). The lift is mostly conversion-side and immediate; "free guidebook" SEO/listicle traffic compounds slower — hence the ramp. +120% ≈ 1,350 signups/mo at max vs ~612 today.
+          <strong>③ Referral accumulation (0.045% exposure→signup):</strong> exposures = all hosts × 55% active × ~10 guest opens/mo ≈ 60–70k/mo growing with the Free base. Chain: incentivized footer banner CTR 1–3% × clicker→host-signup 2–5% (few guests are hosts) ≈ 0.03–0.09%. Benchmark: referral programs drive 5–15% of SaaS signups (Dropbox's 35% is the outlier) — defaults land at ~30 signups/mo ≈ 4–5% of G2s, growing.
+          <strong>⚠ Pricing red flag:</strong> at flat list prices ($12.50/$18) the paid new-G4 ARPU would be ~$11–13 vs today's $18.3 — a decrease. The +25% default assumes per-property pricing and/or add-on monetization (SMS budgets, store commission). Breakeven is +37% ($25.1). Validate this in the first 60 days of G4 plan-mix data post-launch.
         </div>
       </div>
     </div>
@@ -970,19 +979,26 @@ function showTab(id, btn) {
 
 /* ══════════ FREE PLAN SIMULATION ══════════ */
 // Fixed anchors — May 2026 KPI actuals
-const SIM_B0 = 9876, SIM_ABL = 24.6, SIM_SS = 0.54, SIM_AST = 14;
-const SIM_IDS = ['NP','PC','NC','UPL','K1','D0','DM','LIFT','FC','AS','GH','GS','LAG','RF','CC','CX','UP'];
+const SIM_B0 = 9876;          // paying hosts (fixed)
+const SIM_ABL = 24.6;         // blended base ARPU $/mo (fixed)
+const SIM_A0 = 18.3;          // current new-G4 ARPU $/mo = MRR-new ÷ G4s (KPI report 2026 avg)
+const SIM_SS = 0.54;          // Starter share of new G4s (Mar–May 2026)
+const SIM_W = [0.35,0.35,0.15,0.08,0.04,0.03]; // Free→Paid conversion timing: 70% in months 1–2, tail to m6
+const SIM_IDS = ['NP','PC','NC','APN','SLW','D0','DM','PRK','CC','AST','LIFT','RMP','FC','AS','GH','GS','LAG','RF'];
 const SIM_ANCHOR = {NP:168, PC:1.6, NC:0.7};
 const SIM_PRESETS = {
-  base: Object.assign({}, SIM_ANCHOR, {UPL:25, K1:50, D0:4,  DM:0.30, LIFT:80,  FC:4, AS:60, GH:20, GS:0.030, LAG:3, RF:85, CC:6,  CX:4, UP:1.0}),
-  pess: Object.assign({}, SIM_ANCHOR, {UPL:20, K1:75, D0:8,  DM:0.60, LIFT:40,  FC:7, AS:40, GH:12, GS:0.015, LAG:4, RF:95, CC:3,  CX:6, UP:0.5}),
-  opt:  Object.assign({}, SIM_ANCHOR, {UPL:30, K1:30, D0:2,  DM:0.15, LIFT:150, FC:3, AS:75, GH:30, GS:0.060, LAG:2, RF:80, CC:10, CX:3, UP:1.5})
+  base: Object.assign({}, SIM_ANCHOR, {APN:22.9, SLW:50, D0:3, DM:0.25, PRK:35, CC:10, AST:14, LIFT:120, RMP:4, FC:5, AS:55, GH:10, GS:0.045, LAG:1, RF:85}),
+  pess: Object.assign({}, SIM_ANCHOR, {APN:20.0, SLW:70, D0:6, DM:0.50, PRK:20, CC:5,  AST:13, LIFT:60,  RMP:6, FC:8, AS:45, GH:7,  GS:0.020, LAG:2, RF:95}),
+  opt:  Object.assign({}, SIM_ANCHOR, {APN:25.0, SLW:35, D0:2, DM:0.15, PRK:50, CC:15, AST:15, LIFT:200, RMP:3, FC:4, AS:65, GH:14, GS:0.090, LAG:1, RF:80})
 };
 const SIM_FMT = {
-  NP:v=>simN(v), PC:v=>v.toFixed(1)+'%', NC:v=>v.toFixed(1)+'%', UPL:v=>'+'+v+'%',
-  K1:v=>v+'%', D0:v=>v+'%', DM:v=>v+'%',
-  LIFT:v=>'+'+v+'%', FC:v=>v+'%', AS:v=>v+'%', GH:v=>simN(v), GS:v=>v.toFixed(3)+'%', LAG:v=>v+' mo', RF:v=>v+'%',
-  CC:v=>v+'%', CX:v=>v+' mo', UP:v=>v+'%'
+  NP:v=>simN(v), PC:v=>v.toFixed(1)+'%', NC:v=>v.toFixed(1)+'%',
+  APN:v=>'$'+v.toFixed(1)+' (+'+Math.round((v/SIM_A0-1)*100)+'%)',
+  SLW:v=>v+'% ('+Math.round(SIM_SS*v)+'% of G4s)', D0:v=>v+'%', DM:v=>v+'%',
+  PRK:v=>v+'%',
+  CC:v=>v+'%', AST:v=>'$'+v.toFixed(1),
+  LIFT:v=>'+'+v+'%', RMP:v=>v+' mo', FC:v=>v+'%',
+  AS:v=>v+'%', GH:v=>simN(v), GS:v=>v.toFixed(3)+'%', LAG:v=>v+' mo', RF:v=>v+'%'
 };
 function simN(v){return Math.round(v).toLocaleString('en-US')}
 function simC(v){const a=Math.abs(v);let s=a>=1e6?(a/1e6).toFixed(2)+'M':a>=1e3?(a/1e3).toFixed(1)+'k':Math.round(a).toString();return (v<0?'−$':'+$')+s}
@@ -990,38 +1006,45 @@ function simGetP(){const p={};SIM_IDS.forEach(function(id){p[id]=parseFloat(docu
 
 function simSimulate(p){
   const M=12;
-  const pc=p.PC/100, nc=p.NC/100, upl=p.UPL/100,
-        k1=p.K1/100, d0=p.D0/100, dm=p.DM/100, lift=p.LIFT/100,
-        fc=p.FC/100, as_=p.AS/100, gs=p.GS/100, rf=p.RF/100,
-        cc=p.CC/100, cx=p.CX, up=p.UP/100;
+  const pc=p.PC/100, nc=p.NC/100, apn=p.APN, ast=p.AST,
+        slw=p.SLW/100, d0=p.D0/100, dm=p.DM/100, prk=p.PRK/100,
+        cc=p.CC/100, liftMax=p.LIFT/100, rmp=p.RMP,
+        fc=p.FC/100, as_=p.AS/100, gs=p.GS/100, rf=p.RF/100;
   const MRR0 = SIM_B0*SIM_ABL;
-  // Baseline: no Free plan, current tier mix (no uplift)
+  // Baseline: no Free plan, current tiers, new G4s at current $18.3 ARPU
   let hB=SIM_B0, mB=MRR0; const mrrB=[];
-  for(let t=1;t<=M;t++){ mB = mB*(1-nc) + p.NP*SIM_ABL; hB = hB*(1-pc) + p.NP; mrrB.push(mB); }
+  for(let t=1;t<=M;t++){ mB = mB*(1-nc) + p.NP*SIM_A0; hB = hB*(1-pc) + p.NP; mrrB.push(mB); }
   // Free-plan scenario
   let paid=SIM_B0, free=0, mF=MRR0;
   const mrrF=[], freeArr=[], refArr=[], exposure=[], inflowArr=[];
   let refTotal=0, convTotal=0;
   for(let t=1;t<=M;t++){
     const hostsPrev = paid + free;
+    // Gain 3 — referral: all hosts (Free hosts send guidebooks too) expose guests
     exposure.push(hostsPrev*as_*p.GH);
     const refSign = (t-p.LAG>=1) ? exposure[t-1-p.LAG]*gs : 0;
     refTotal += refSign;
     const refPaid = refSign*(1-rf), refFree = refSign*rf;
-    const parked = p.NP*SIM_SS*k1;                              // Starter G4s choosing Free (hosts)
-    const directPaid = p.NP - parked;
-    const newPaidMRR = p.NP*SIM_ABL*(1+upl) - parked*SIM_AST;   // uplifted new-paid MRR minus Starter-priced parking
-    const downg = paid*SIM_SS*dm + (t===1 ? SIM_B0*SIM_SS*d0 : 0); // Starter-base downgrades
-    const inflow = parked + p.NP*lift + downg + refFree;        // this month's Free cohort
+    // Migration: lower-Starter G4s land on Free; rest pay at re-tier ARPU
+    const freeG4 = p.NP*SIM_SS*slw;
+    const paidG4 = p.NP - freeG4;
+    const newPaidMRR = paidG4*apn;
+    // Base losses: Starter-base downgrades (one-time + trickle) at Starter ARPU
+    const downg = paid*SIM_SS*dm + (t===1 ? SIM_B0*SIM_SS*d0 : 0);
+    // Churn-to-Free: share of monthly churners park on Free (no MRR delta — they churned in both scenarios)
+    const churnPark = paid*pc*prk;
+    // Gain 2 — marketing free-plan lift, ramping to max over rmp months
+    const lift_t = p.NP*liftMax*Math.min(1, t/rmp);
+    const inflow = freeG4 + lift_t + churnPark + downg + refFree;   // this month's Free cohort
     inflowArr.push(inflow);
-    const cohortConv = (t-cx>=1) ? inflowArr[t-1-cx]*cc*Math.pow(1-fc,cx) : 0;  // Gain 3
-    const trickle = free*up;
-    let upgr = cohortConv + trickle;
-    if(upgr > free + inflow) upgr = free + inflow;
-    convTotal += upgr;
-    mF = mF*(1-nc) + newPaidMRR - downg*SIM_AST + upgr*SIM_AST + refPaid*SIM_AST;
-    paid = paid*(1-pc) + directPaid - downg + upgr + refPaid;
-    free = free*(1-fc) + inflow - upgr;
+    // Gain 1 — Free→Paid upgrade pressure: cohort converts on the m1–2-peaked curve, survival-adjusted
+    let conv = 0;
+    for(let a=1;a<=6;a++){ if(t-a>=1) conv += SIM_W[a-1]*cc*inflowArr[t-a-1]*Math.pow(1-fc,a); }
+    if(conv > free + inflow) conv = free + inflow;
+    convTotal += conv;
+    mF = mF*(1-nc) + newPaidMRR - downg*ast + conv*ast + refPaid*ast;
+    paid = paid*(1-pc) + paidG4 - downg + conv + refPaid;
+    free = free*(1-fc) + inflow - conv;
     if(paid<0)paid=0; if(free<0)free=0; if(mF<0)mF=0;
     mrrF.push(mF); freeArr.push(free); refArr.push(refSign);
   }
