@@ -222,7 +222,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="tier-bullets">
 </div>
 <div class="tier-chips">
-<span class="chip">50 views / guidebook</span>
+<span class="chip">30 views / guidebook</span>
 <span class="chip">1 seat</span>
 <span class="chip">Auto Translated</span>
 <span class="chip">Current GB UI</span>
@@ -341,7 +341,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr>
 <td>Guidebook views <span style="font-size:10px;color:var(--text3);font-weight:400;">↑ soft limit applies</span></td>
-<td class="center"><span class="lim">50 / guidebook</span></td>
+<td class="center"><span class="lim">30 / guidebook</span></td>
 <td class="center"><span class="y">Unlimited</span></td>
 <td class="center"><span class="yp">Unlimited</span></td>
 <td class="center"><span class="yb">Unlimited</span></td>
@@ -446,10 +446,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr>
 <td>Contacts DB </td>
-<td class="center"><span class="lim">Latest 10 guests</span></td>
-<td class="center"><span class="lim">Latest 100 guests</span></td>
-<td class="center"><span class="yp">All guests ever</span></td>
-<td class="center"><span class="yb">All guests ever</span></td>
+<td class="center"><span class="y">Unlimited</span></td>
+<td class="center"><span class="y">Unlimited</span></td>
+<td class="center"><span class="yp">Unlimited</span></td>
+<td class="center"><span class="yb">Unlimited</span></td>
 </tr>
 <tr>
 <td>Contact collection in guide </td>
@@ -496,7 +496,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr>
 <td>AI chatbot in guidebook </td>
-<td class="center"><span class="lim">3 conversations / mo</span></td>
+<td class="center"><span class="lim">3 conversations / mo · max 1h each</span></td>
 <td class="center"><span class="lim">8 conversations / property / mo</span></td>
 <td class="center"><span class="yp">✓ unlimited</span></td>
 <td class="center"><span class="yb">✓ unlimited</span></td>
@@ -634,7 +634,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tbody>
 </table>
 <div style="margin-top:12px;padding:10px 14px;background:rgba(245,158,11,0.08);border:1px solid rgba(245,158,11,0.25);border-radius:6px;font-size:11px;color:var(--text2);line-height:1.6;">
-  <span style="color:#f59e0b;font-weight:600;">↑ How soft limits work</span> — All limits marked ↑ (views, emails, etc.) follow the same two-stage model: at <strong>100% usage</strong> you receive an email nudge to upgrade; feature access is only paused at <strong>130% usage</strong>. This gives a comfortable buffer so no guest experience is disrupted by an accidental spike.
+  <span style="color:#f59e0b;font-weight:600;">↑ How soft limits work</span> — All limits marked ↑ follow a three-stage model: at <strong>75% usage</strong> you get an early warning email; at <strong>100%</strong> an upgrade nudge (usage continues — not blocked); feature access pauses only at <strong>125%</strong>. This buffer means no guest experience is disrupted by an accidental spike.
 </div>
 </div>
 </div>
@@ -645,7 +645,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="upsell-seg s-free">
 <div class="upsell-seg-hd">Free → Essentials</div>
 <ul class="upsell-triggers">
-          <li>Guidebook views hit the 50/guidebook soft limit (130% = access paused)</li>
+          <li>Guidebook views hit the 30/guidebook soft limit (125% = access paused)</li>
           <li>Wants to remove TS badge or brand guide</li>
           <li>Needs unlimited scheduling — Free capped at 8/mo emails (no SMS on Free)</li>
           <li>PMS sync breaks down when done manually</li>
@@ -688,7 +688,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="wt-row"><div class="wt-feat">Email</div><div class="wt-why">Limited to 8 scheduled emails/mo. Full automation and PMS-triggered sends require Essentials.</div></div>
 <div class="wt-row"><div class="wt-feat">SMS</div><div class="wt-why">No SMS on Free. Essentials gets an 8% of MRR SMS budget (shared across Scheduled SMS and Two-way messaging). Pro and Custom get 12%.</div></div>
 <div class="wt-row"><div class="wt-feat">Branding</div><div class="wt-why">TS badge always on. Professional hosts who care about guest experience upgrade to remove it.</div></div>
-<div class="wt-row"><div class="wt-feat">50 views/guidebook cap</div><div class="wt-why">Soft limit on guidebook views per guide. At 100% usage an upgrade email fires; at 130% access pauses. Multi-property hosts hit this fast.</div></div>
+<div class="wt-row"><div class="wt-feat">30 views/guidebook cap</div><div class="wt-why">Soft limit on guidebook views per guide. At 75% a warning email fires; at 100% an upgrade nudge; at 125% access pauses. Multi-property hosts hit this fast.</div></div>
 <div class="wt-row"><div class="wt-feat">15% commission</div><div class="wt-why">Online sales only. ~5 orders/mo at avg $20 = cost of Essentials. Commission drops to 6% on upgrade.</div></div>
 </div>
 <div class="card">
@@ -778,7 +778,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
         <!-- Free host builds guide -->
         <rect x="205" y="342" width="270" height="44" rx="6" fill="#1d2333" stroke="#2dd4bf" stroke-width="1.5"/>
         <text x="340" y="360" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="middle">Free host builds guide</text>
-        <text x="340" y="376" font-size="10" fill="#94a3b8" text-anchor="middle">Manual · 50 views/guidebook · TS badge + ads visible</text>
+        <text x="340" y="376" font-size="10" fill="#94a3b8" text-anchor="middle">Manual · 30 views/guidebook · TS badge + ads visible</text>
 
         <line x1="340" y1="386" x2="340" y2="408" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arr-exp)"/>
 
@@ -935,7 +935,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
     <div class="card" style="margin-bottom:14px;">
       <div style="font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:8px;">Of every 100 accounts entering Free in a month, <b style="color:var(--teal)">X%</b> upgrade during their lifetime:</div>
         <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
-          <li><b style="color:var(--text)">70% upgrade within months 1–2</b> — the Free limits (50 views/guidebook, 8 emails/mo, 1 seat, manual PMS) are hit at the first real bookings</li>
+          <li><b style="color:var(--text)">70% upgrade within months 1–2</b> — the Free limits (30 views/guidebook, 8 emails/mo, 1 seat, manual PMS) are hit at the first real bookings</li>
           <li>The rest trickle in by month 6, reduced by Free-base churn along the way</li>
           <li>Converts mirror today's paid mix: <b style="color:var(--text)">46% choose Pro</b> (= current Growth+Pro share of G4s), the rest Starter</li>
           <li>Benchmarks: freemium medians 2–5% · usage-capped products 8–15% — default sits low because the Free pool now includes today's non-converting signups</li>
