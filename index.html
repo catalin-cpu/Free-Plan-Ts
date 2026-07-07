@@ -230,7 +230,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </div>
 </div>
 <div class="tier-card t-starter recommended">
-<div class="tier-name">Essentials</div>
+<div class="tier-name">Starter</div>
 <div class="tier-target">Pro for scaling your business</div>
 <div class="tier-price">$12.50<span style="font-size:13px;font-weight:400">/mo</span></div>
 <div class="tier-price-sub">$99/yr · 2 seats</div>
@@ -288,7 +288,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </div>
 
 <div class="card" style="border-top:2px solid var(--teal);">
-<div class="card-hd" style="color:var(--teal);margin-bottom:10px;">Essentials</div>
+<div class="card-hd" style="color:var(--teal);margin-bottom:10px;">Starter</div>
 <ul style="font-size:12px;color:var(--text2);line-height:1.75;padding-left:16px;margin:0;">
   <li>MVP product for 1–6 property owners</li>
   <li>Price-sensitive users</li>
@@ -325,7 +325,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <tr>
 <th class="col-feat">Feature </th>
 <th class="col-free">Free · $0</th>
-<th class="col-starter">Essentials · $12.50</th>
+<th class="col-starter">Starter · $12.50</th>
 <th class="col-premium">Pro · $18.00</th>
 <th class="col-contact">Custom</th>
 </tr>
@@ -363,9 +363,9 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <tr>
 <td>Guest Referral Banner</td>
 <td class="center"><span class="lim">Shown</span></td>
-<td class="center"><span class="n">removed</span></td>
-<td class="center"><span class="n">removed</span></td>
-<td class="center"><span class="n">removed</span></td>
+<td class="center"><span class="y">Opt In</span></td>
+<td class="center"><span class="yp">Opt In</span></td>
+<td class="center"><span class="yb">Opt In</span></td>
 </tr>
 <tr>
 <td>Local recommendations + Google Places </td>
@@ -375,7 +375,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <td class="center"><span class="yb">✓ unlimited</span></td>
 </tr>
 <tr>
-<td>Language support </td>
+<td>Language support <!-- TODO: confirm — PRD removed gate; ungate Free to ✓ Custom Translations, or remove row? --> </td>
 <td class="center"><span class="lim">Auto Google Translated</span></td>
 <td class="center"><span class="y">✓ Custom Translations</span></td>
 <td class="center"><span class="yp">✓ Custom Translations</span></td>
@@ -425,7 +425,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr class="cat-row"><td colspan="5">Guest management (CRM)</td></tr><tr>
 <td>Leave a review pop-up (review insurance) </td>
-<td class="center"><span class="lim">2× / month</span></td>
+<td class="center"><span class="y">✓</span></td>
 <td class="center"><span class="y">✓</span></td>
 <td class="center"><span class="yp">✓</span></td>
 <td class="center"><span class="yb">✓</span></td>
@@ -481,23 +481,23 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <td class="center"><span class="yb">✓ unlimited</span></td>
 </tr>
 <tr>
-<td>Scheduled SMS </td>
+<td>Scheduled SMS <!-- TODO: confirm — Starter SMS 0% removes SMS entirely from Starter; affects Two-way messaging row too — intended or typo? --> </td>
 <td class="center"><span class="n">✗</span></td>
-<td class="center"><span class="y">4% of MRR SMS budget</span><br><span style="font-size:10px;color:var(--text3);">~12 SMS / month</span></td>
-<td class="center"><span class="yp">12% of MRR SMS budget</span><br><span style="font-size:10px;color:var(--text3);">~54 SMS / month</span></td>
-<td class="center"><span class="yb">12% of MRR SMS budget</span><br><span style="font-size:10px;color:var(--text3);">~54 SMS / month</span></td>
+<td class="center"><span class="n">✗</span></td>
+<td class="center"><span class="yp">10% of MRR SMS budget</span></td>
+<td class="center"><span class="yb">12% of MRR SMS budget</span></td>
 </tr>
 <tr>
 <td>Two-way messaging — US only </td>
 <td class="center"><span class="n">✗</span></td>
-<td class="center"><span class="y">Shared SMS budget</span></td>
+<td class="center"><span class="n">✗</span></td>
 <td class="center"><span class="yp">Shared SMS budget</span></td>
 <td class="center"><span class="yb">Shared SMS budget</span></td>
 </tr>
 <tr>
 <td>AI chatbot in guidebook </td>
 <td class="center"><span class="lim">3 conversations / mo · max 1h each</span></td>
-<td class="center"><span class="lim">8 conversations / property / mo</span></td>
+<td class="center"><span class="lim">8 / guidebook / mo</span></td>
 <td class="center"><span class="yp">✓ unlimited</span></td>
 <td class="center"><span class="yb">✓ unlimited</span></td>
 </tr>
@@ -517,7 +517,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 </tr>
 <tr class="cat-row"><td colspan="5">AI content assistant</td></tr>
 <tr>
-<td>AI writing / content generation</td>
+<td>AI writing / content generation <!-- TODO: confirm — PRD removed gate; (a) ungate Free to ✓, or (b) delete row? --> </td>
 <td class="center"><span class="n">✗</span></td>
 <td class="center"><span class="y">✓ unlimited</span></td>
 <td class="center"><span class="yp">✓ unlimited</span></td>
@@ -643,7 +643,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="sec-title">Upgrade trigger — what pushes each tier up</div>
 <div class="upsell-wrap">
 <div class="upsell-seg s-free">
-<div class="upsell-seg-hd">Free → Essentials</div>
+<div class="upsell-seg-hd">Free → Starter</div>
 <ul class="upsell-triggers">
           <li>Guidebook views hit the 20/guidebook soft limit (150% = access paused)</li>
           <li>Wants to remove TS badge or brand guide</li>
@@ -655,10 +655,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="upsell-arrow">→</div>
 </div>
 <div class="upsell-seg s-starter">
-<div class="upsell-seg-hd">Essentials → Pro</div>
+<div class="upsell-seg-hd">Starter → Pro</div>
 <ul class="upsell-triggers">
           <li>Needs SMS or two-way messaging at scale</li>
-          <li>Needs more than 8 chatbot resolutions/property/month</li>
+          <li>Needs more than 8 chatbot conversations/guidebook/month</li>
           <li>Building a guest database — needs CRM</li>
           <li>Professionalising brand — custom domain</li>
           <li>Growing team — needs unlimited seats</li>
@@ -684,18 +684,18 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
 <div class="g2">
 <div class="card">
 <div class="card-hd">What Free withholds — and why</div>
-<div class="wt-row"><div class="wt-feat">PMS sync</div><div class="wt-why">Manual-only forces engagement. Any host who grows past hobby use needs Essentials automation.</div></div>
-<div class="wt-row"><div class="wt-feat">Email</div><div class="wt-why">Limited to 8 scheduled emails/mo. Full automation and PMS-triggered sends require Essentials.</div></div>
-<div class="wt-row"><div class="wt-feat">SMS</div><div class="wt-why">No SMS on Free. Essentials gets a 4% of MRR SMS budget (shared across Scheduled SMS and Two-way messaging). Pro and Custom get 12%.</div></div>
+<div class="wt-row"><div class="wt-feat">PMS sync</div><div class="wt-why">Manual-only forces engagement. Any host who grows past hobby use needs Starter automation.</div></div>
+<div class="wt-row"><div class="wt-feat">Email</div><div class="wt-why">Limited to 8 scheduled emails/mo. Full automation and PMS-triggered sends require Starter.</div></div>
+<div class="wt-row"><div class="wt-feat">SMS</div><div class="wt-why">No SMS on Free or Starter. Pro gets 10% of MRR SMS budget; Custom gets 12%.</div></div>
 <div class="wt-row"><div class="wt-feat">Branding</div><div class="wt-why">TS badge always on. Professional hosts who care about guest experience upgrade to remove it.</div></div>
 <div class="wt-row"><div class="wt-feat">20 views/guidebook cap</div><div class="wt-why">Soft limit on guidebook views per guide. At 75% a warning email fires; at 100% an upgrade nudge; at 150% access pauses. Multi-property hosts hit this fast.</div></div>
-<div class="wt-row"><div class="wt-feat">15% commission</div><div class="wt-why">Online sales only. ~5 orders/mo at avg $20 = cost of Essentials. Commission drops to 6% on upgrade.</div></div>
+<div class="wt-row"><div class="wt-feat">5% commission</div><div class="wt-why">Online sales only. ~12 orders/mo at avg $20 = cost of Starter. Commission drops to 3% on upgrade.</div></div>
 </div>
 <div class="card">
 <div class="card-hd">Revenue levers on Free</div>
 <div class="lever-row">
 <div class="lever-label">Store 5%</div>
-<div class="lever-desc">$20 avg order × 5% = $1.00/order. ~12 orders/mo covers Essentials cost ($12.50). Commission drops to 3% on Essentials as sales grow.</div>
+<div class="lever-desc">$20 avg order × 5% = $1.00/order. ~12 orders/mo covers Starter cost ($12.50). Commission drops to 3% on Starter as sales grow.</div>
 </div>
 
 
@@ -733,7 +733,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
         <!-- Pricing page -->
         <rect x="230" y="24" width="220" height="42" rx="6" fill="#1d2333" stroke="#60a5fa" stroke-width="1.5"/>
         <text x="340" y="41" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="middle">Pricing page</text>
-        <text x="340" y="57" font-size="10" fill="#94a3b8" text-anchor="middle">Free · Essentials · Pro</text>
+        <text x="340" y="57" font-size="10" fill="#94a3b8" text-anchor="middle">Free · Starter · Pro</text>
 
         <line x1="340" y1="66" x2="340" y2="90" stroke="#60a5fa" stroke-width="1.5" marker-end="url(#arr-exp)"/>
 
@@ -748,10 +748,10 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
         <polygon points="340,158 406,182 340,206 274,182" fill="#1d2333" stroke="#60a5fa" stroke-width="1.5"/>
         <text x="340" y="186" font-size="11" font-weight="600" fill="#e2e8f0" text-anchor="middle">Trial ends</text>
 
-        <!-- Left: Subscribe Essentials -->
+        <!-- Left: Subscribe Starter -->
         <polyline points="274,182 100,182 100,222" fill="none" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arr-exp)"/>
         <rect x="10" y="222" width="180" height="44" rx="6" fill="#1d2333" stroke="#2dd4bf" stroke-width="1.5"/>
-        <text x="100" y="241" font-size="12" font-weight="600" fill="#2dd4bf" text-anchor="middle">Subscribe Essentials</text>
+        <text x="100" y="241" font-size="12" font-weight="600" fill="#2dd4bf" text-anchor="middle">Subscribe Starter</text>
         <text x="100" y="256" font-size="10" fill="#94a3b8" text-anchor="middle">$12.50 / mo</text>
 
         <!-- Right: Subscribe Custom -->
@@ -778,7 +778,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
         <!-- Free host builds guide -->
         <rect x="205" y="342" width="270" height="44" rx="6" fill="#1d2333" stroke="#2dd4bf" stroke-width="1.5"/>
         <text x="340" y="360" font-size="13" font-weight="600" fill="#e2e8f0" text-anchor="middle">Free host builds guide</text>
-        <text x="340" y="376" font-size="10" fill="#94a3b8" text-anchor="middle">Manual · 30 views/guidebook · TS badge + ads visible</text>
+        <text x="340" y="376" font-size="10" fill="#94a3b8" text-anchor="middle">Manual · 20 views/guidebook · TS badge + ads visible</text>
 
         <line x1="340" y1="386" x2="340" y2="408" stroke="#2dd4bf" stroke-width="1.5" marker-end="url(#arr-exp)"/>
 
@@ -935,7 +935,7 @@ body { background: var(--bg); color: var(--text); font-family: 'Inter', sans-ser
     <div class="card" style="margin-bottom:14px;">
       <div style="font-size:11.5px;color:var(--text2);line-height:1.6;margin-bottom:8px;">Of every 100 accounts entering Free in a month, <b style="color:var(--teal)">X%</b> upgrade during their lifetime:</div>
         <ul style="font-size:11.5px;color:var(--text2);line-height:1.7;padding-left:16px;margin:0 0 12px 0;">
-          <li><b style="color:var(--text)">70% upgrade within months 1–2</b> — the Free limits (30 views/guidebook, 8 emails/mo, 1 seat, manual PMS) are hit at the first real bookings</li>
+          <li><b style="color:var(--text)">70% upgrade within months 1–2</b> — the Free limits (20 views/guidebook, 8 emails/mo, 1 seat, manual PMS) are hit at the first real bookings</li>
           <li>The rest trickle in by month 6, reduced by Free-base churn along the way</li>
           <li>Converts mirror today's paid mix: <b style="color:var(--text)">46% choose Pro</b> (= current Growth+Pro share of G4s), the rest Starter</li>
           <li>Benchmarks: freemium medians 2–5% · usage-capped products 8–15% — default sits low because the Free pool now includes today's non-converting signups</li>
